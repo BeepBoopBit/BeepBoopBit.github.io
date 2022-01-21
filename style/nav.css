@@ -1,0 +1,23 @@
+.headClass{
+    overflow:visible;
+    position: sticky;
+    top: 0px;
+}
+
+.navWrapper{
+    background-color: #888;
+}
+
+.topNav{
+    float: right;
+    display:block;
+}
+
+.topNav ul{
+    list-style-type: none;
+}
+
+.topNav li{
+    display: inline;
+    padding: 10px;
+}

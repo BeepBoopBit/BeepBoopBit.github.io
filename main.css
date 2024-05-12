@@ -22,8 +22,8 @@ body{
 /* Top Navigation */
 
 #top-nav{
-    background: linear-gradient(-84deg, rgba(64,49,156,1) 0%, rgba(100,129,197,1) 37%);
     background: rgb(64,49,156);
+    background: linear-gradient(-80deg, rgba(64,49,156,1) 0%, rgba(100,129,197,1) 200%);
     display:flex;
     height: 100px;
     width: 100%;
@@ -69,6 +69,60 @@ body{
     
     #top-nav__title{
         margin: 0px auto;
+    }
+}
+
+/* Contents */
+
+#main-title{
+    margin-top: 50px;
+    display:flex;
+    flex-direction: row;
+    font-size: 10vw;
+    color: white;
+    line-height: 0.9;
+    padding: 20px;
+}
+
+#main-title svg{
+    margin-top: 20px;
+}
+
+#main-subtitle{
+    color: white;
+    font-size: 3vw;
+    font-weight: 300;
+    margin-left: 100px;
+    min-width: 884px;
+    padding: 20px;
+}
+
+@media screen and (max-width: 905px){
+    #main-subtitle{
+        min-width: 400px;
+    }
+}
+
+
+@media screen and (max-width: 720px){
+    #main-title{
+        align-items: center;
+        font-size: 12vw;
+        justify-content: center;
+        margin: 0;
+        text-align: center;
+        width: 100%;
+    }
+
+    #main-subtitle{
+        min-width: 0;
+        margin: 0;
+        text-align: center;
+        width: 100%;
+        font-size: 5vw;
+    }
+    .svg{
+        display: none;
     }
 }
 

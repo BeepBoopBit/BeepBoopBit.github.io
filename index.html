@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,8 +8,46 @@
     <link rel="stylesheet" href="main.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+        rel="stylesheet">
+
+    <script>
+
+        function init_svg(el_name, h, w, cx, cy, r, fill = "none", stroke = "white", stroke_width = 1) {
+
+            // Get all the SVGs with the same class name
+            var svgs = document.getElementsByClassName(el_name);
+            for (let i = 0; i < svgs.length; i++) {
+
+                // Set the attributes of the SVG
+                svgs[i].setAttribute("height", h);
+                svgs[i].setAttribute("width", w);
+                svgs[i].setAttribute("xmlns", "http://www.w3.org/2000/svg");
+
+                // Create a circle element
+                let create_circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+                create_circle.setAttribute("cx", cx);
+                create_circle.setAttribute("cy", cy);
+                create_circle.setAttribute("r", r);
+                create_circle.setAttribute("fill", fill);
+                create_circle.setAttribute("stroke", stroke);
+                create_circle.setAttribute("stroke-width", stroke_width);
+
+                // Append the circle element to the SVG
+                svgs[i].appendChild(create_circle);
+            }
+
+        }
+
+        window.onload = function () {
+            init_svg("big-svg", 100, 100, 50, 50, 30);
+            init_svg("small-svg", 50, 50, 25, 25, 20);
+            init_svg("tiny-svg", 40, 40, 20, 20, 10);
+        }
+
+    </script>
 </head>
+
 <body>
     <!-- NAVIGATION -->
     <nav id="top-nav">
@@ -16,38 +55,604 @@
             Renz Aguirre
         </span>
 
-        <ul id="top-nav__links">    
+        <ul id="top-nav__links">
             <li>
-                <a href="#">Works</a>
-                <a href="#"> Skills</a>
-                <a href="#"> Experience</a>
-                <a href="#"> Contact</a>
+                <a href="#my-works-link">Works</a>
+                <a href="#my-skills-link"> Skills</a>
+                <a href="#my-experiences-link"> Experience</a>
+                <a href="#my-education-link"> Education </a>
+                <a href="#my-contact-link"> Contact</a>
             </li>
         </ul>
     </nav>
 
     <!-- Content -->
-    <section id="main-title">
-        <svg height="100" width="100" xmlns="http://www.w3.org/2000/svg" class="svg">
-            <circle cx="50" cy="50" r="20" fill="none" stroke="white" stroke-width="1"/>
-        </svg>
-        <h1>
+    <section class="main-container">
+        <article class="main-title title">
+            <svg class="big-svg svg"></svg>
             <span>
-                Renz
+                Renz <br> Aguirre
             </span>
-            <br>
+        </article>
+        <article class="main-subtitle subtitle">
             <span>
-                Aguirre
+                Computer Science Student -- Specializing in Data Science -- Mastering in Artificial Intelligence
             </span>
-        </h1>
+        </article>
     </section>
 
-    <section id="main-subtitle">
-        <span>
-            Computer Science Student -- Specializing in Data Science -- Mastering in Artificial Intelligence
-        </span>
+    <section class="main-container" id="my-works-link">
+        <article class="main-title title">
+            <svg class="big-svg svg"></svg>
+            <span>Works</span>
+        </article>
 
+
+        <section class="sub-container">
+            <article class="sub-title">
+                <svg class="small-svg svg"></svg>
+                <span>Website Development</span>
+            </article>
+
+            <section class="data-container">
+                <article class="data-title">
+                    <svg class="tiny-svg svg"></svg>
+                    <span>
+                        IAMMAD Website
+                    </span>
+                </article>
+                <article class="data-subtitle">
+                    <span>
+                        Created a website for the non-profit organization
+                        "I AM MAKING A DIFFERENCE"
+                    </span>
+                </article>
+            </section>
+
+            <section class="data-container">
+                <article class="data-title">
+                    <svg class="tiny-svg svg"></svg>
+                    <span>
+                        Pearl MPC
+                    </span>
+                </article>
+                <article class="data-subtitle">
+                    <span>
+                        Created a Fullstack website for the Cooperative Organization Pearl MPC as a project for one of
+                        the course in Mapua University.
+                    </span>
+                </article>
+            </section>
+
+            <section class="data-container">
+                <article class="data-title">
+                    <svg class="tiny-svg svg"></svg>
+                    <span>
+                        Sweet Solution Website
+                    </span>
+                </article>
+                <article class="data-subtitle">
+                    <span>
+                        Created a Fullstack website for the Cooperative Organization Pearl MPC as a project for one of
+                        the course in Mapua University.
+                    </span>
+                </article>
+            </section>
+
+            <section class="data-container">
+                <article class="data-title">
+                    <svg class="tiny-svg svg"></svg>
+                    <span>
+                        Other Website Commissions
+                    </span>
+                </article>
+                <article class="data-subtitle">
+                    <span>
+                        Created some frontend-only and fullstack commissions websites
+                    </span>
+                </article>
+            </section>
+        </section>
+
+        <section class="sub-container">
+            <article class="sub-title">
+                <svg class="small-svg svg"></svg>
+                <span>Software Development</span>
+            </article>
+
+            <section class="data-container">
+                <article class="data-title">
+                    <svg class="tiny-svg svg"></svg>
+                    <span>
+                        Laboratory Environment
+                    </span>
+                </article>
+                <article class="data-subtitle">
+                    <span>
+                        A Digital Twin project that lets a user simulate a laboratory environment for observing
+                        reactions.
+                    </span>
+                </article>
+            </section>
+
+            <section class="data-container">
+                <article class="data-title">
+                    <svg class="tiny-svg svg"></svg>
+                    <span>
+                        Condo Management System
+                    </span>
+                </article>
+                <article class="data-subtitle">
+                    <span>
+                        A CRUD Project to create a condo management system using Java.
+                    </span>
+                </article>
+            </section>
+
+            <section class="data-container">
+                <article class="data-title">
+                    <svg class="tiny-svg svg"></svg>
+                    <span>
+                        Ticket System
+                    </span>
+                </article>
+                <article class="data-subtitle">
+                    <span>
+                        A CRUD Project for ticketing system
+                    </span>
+                </article>
+            </section>
+
+            <section class="data-container">
+                <article class="data-title">
+                    <svg class="tiny-svg svg"></svg>
+                    <span>
+                        Memory Viewer
+                    </span>
+                </article>
+                <article class="data-subtitle">
+                    <span>
+                        A Memory Viewer Simulator with different scheduling algorithms.
+                    </span>
+                </article>
+            </section>
+        </section>
+
+
+        <section class="sub-container">
+            <article class="sub-title">
+                <svg class="small-svg svg"></svg>
+                <span>Game Development</span>
+            </article>
+
+            <section class="data-container">
+                <article class="data-title">
+                    <svg class="tiny-svg svg"></svg>
+                    <span>
+                        The Night Of Juan
+                    </span>
+                </article>
+                <article class="data-subtitle">
+                    <span>
+                        Created a 2D RPG Game for a bootcamp.
+                    </span>
+                </article>
+            </section>
+
+            <section class="data-container">
+                <article class="data-title">
+                    <svg class="tiny-svg svg"></svg>
+                    <span>
+                        Whack-A-Melon
+                    </span>
+                </article>
+                <article class="data-subtitle">
+                    <span>
+                        A simple Whack-A-Mole game with a twist.
+                    </span>
+                </article>
+            </section>
+
+            <section class="data-container">
+                <article class="data-title">
+                    <svg class="tiny-svg svg"></svg>
+                    <span>
+                        Console Snake Game
+                    </span>
+                </article>
+                <article class="data-subtitle">
+                    <span>
+                        Testing Snake Game but in the console.
+                    </span>
+                </article>
+            </section>
+        </section>
+
+        <section class="sub-container">
+            <article class="sub-title">
+                <svg class="small-svg svg"></svg>
+                <span>Others</span>
+            </article>
+
+            <section class="data-container">
+                <article class="data-title">
+                    <svg class="tiny-svg svg"></svg>
+                    <span>
+                        HLint
+                    </span>
+                </article>
+                <article class="data-subtitle">
+                    <span>
+                        A Basic Interpreter that can do mathematical and conditional operations
+                    </span>
+                </article>
+            </section>
+
+            <section class="data-container">
+                <article class="data-title">
+                    <svg class="tiny-svg svg"></svg>
+                    <span>
+                        Assembly Calculator
+                    </span>
+                </article>
+                <article class="data-subtitle">
+                    <span>
+                        An 8-bit Calculator with some UI made in Assembly Language.
+                    </span>
+                </article>
+            </section>
+        </section>
     </section>
-    
+
+
+    <section class="main-container" id="my-skills-link">
+        <article class="main-title title">
+            <svg class="big-svg svg"></svg>
+            <span>Skills</span>
+        </article>
+        <section class="sub-container">
+            <article class="sub-title">
+                <svg class="small-svg svg"></svg>
+                <span>Languages</span>
+            </article>
+
+            <section class="data-container">
+                <table class="data-table">
+                    <tr>
+                        <th> Beginner </th>
+                        <th> Intermediate </th>
+                        <th> Advanced </th>
+                    </tr>
+                    <tr>
+                        <td>C</td>
+                        <td>C++</td>
+                        <td>HTML</td>
+                    </tr>
+                    <tr>
+                        <td>RUST</td>
+                        <td>Python</td>
+                        <td>CSS</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>Typescript</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>Javascript</td>
+                        <td></td>
+                    </tr>
+
+                </table>
+            </section>
+        </section>
+        <section class="sub-container">
+            <article class="sub-title">
+                <svg class="small-svg svg"></svg>
+                <span>Tools and Frameworks</span>
+            </article>
+
+            <section class="data-container">
+                <table class="data-table">
+                    <tr>
+                        <th> Beginner </th>
+                        <th> Intermediate </th>
+                        <th> Advanced </th>
+                    </tr>
+                    <tr>
+                        <td>React</td>
+                        <td>Angular</td>
+                        <td>Neovim</td>
+                    </tr>
+                    <tr>
+                        <td>Unity</td>
+                        <td>Linux CLI</td>
+                        <td>VS Code</td>
+                    </tr>
+                    <tr>
+                        <td>Tensortflow</td>
+                        <td>Git</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Keras</td>
+                        <td>MySQL</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Pytorch</td>
+                        <td>PostgreSQL</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Docker</td>
+                        <td>MongoDB</td>
+                        <td></td>
+                    </tr>
+
+                </table>
+            </section>
+        </section>
+        <section class="sub-container">
+            <article class="sub-title">
+                <svg class="small-svg svg"></svg>
+                <span>Soft Skills</span>
+            </article>
+
+            <section class="data-container">
+                <table class="data-table">
+                    <tr>
+                        <th> Beginner </th>
+                        <th> Intermediate </th>
+                        <th> Advanced </th>
+                    </tr>
+                    <tr>
+                        <td>Emotional</br>Intelligence</td>
+                        <td>Presentation</td>
+                        <td>Reliability</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>Communication</td>
+                        <td>Research</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>Management</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>Leadership</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>Analysis</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>Confidence</td>
+                        <td></td>
+                    </tr>
+
+                </table>
+            </section>
+        </section>
+        <section class="sub-container">
+            <article class="sub-title">
+                <svg class="small-svg svg"></svg>
+                <span>Others</span>
+            </article>
+
+            <section class="data-container">
+                <table class="data-table">
+                    <tr>
+                        <th> Beginner </th>
+                        <th> Intermediate </th>
+                        <th> Advanced </th>
+                    </tr>
+                    <tr>
+                        <td>REST</td>
+                        <td>Data Structure</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>System Design</td>
+                        <td>AI Architecture</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Algorithms</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>SDLC</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+            </section>
+        </section>
+    </section>
+
+    <section class="main-container" id="my-experiences-link">
+        <article class="main-title title">
+            <svg class="big-svg svg"></svg>
+            <span>Experiences</span>
+        </article>
+        <section class="sub-container">
+            <article class="sub-title">
+                <svg class="small-svg svg"></svg>
+                <span>Freelancing</span>
+            </article>
+            <article class="sub-subtitle">
+                <span>
+                    Created software and applications using different tools and languages such as HTML, CSS, Javascript,
+                    Python, and Java; accepted some data analysis commissions; and has experience creating technical and
+                    product requirement document for software
+                </span>
+            </article>
+        </section>
+        <section class="sub-container">
+            <article class="sub-title">
+                <svg class="small-svg svg"></svg>
+                <span>Information System Next-Gen</span>
+            </article>
+            <article class="sub-subtitle">
+                <span>
+                    Leads the Information System Next-Gen student organization. Applied leadership, management,
+                    communication, documentation, etc. for different
+                </span>
+            </article>
+
+            <section class="data-container">
+                <article class="data-title">
+                    <svg class="tiny-svg svg"></svg>
+                    <span>
+                        Chairperson of the Board
+                    </span>
+                </article>
+                <article class="data-subtitle">
+                    <span>
+                        Leads the Board Members to develop strategies and future plans for the organization.<br/>
+                        • Advices executives for their plans and goals<br/>
+                        • Sets goals and makes decisions for the organization<br/>
+                        • Support the organization through finding possible opportunities
+                    </span>
+                </article>
+                <article class="data-title">
+                    <svg class="tiny-svg svg"></svg>
+                    <span>
+                        President
+                    </span>
+                </article>
+                <article class="data-subtitle">
+                    <span>
+                        Makes decisions, plans events, and engages the community of the organization. As a previous
+                        creatives committee of this organization, I was able to experience problems that made
+                        managing the organization hard but with a direction. This then enabled me to:<br/>
+                        • Make the organization as the top 1 organization in Mapua University<br/>
+                        • Enabled the communication between the organization and different companies such as PwC<br/>
+                        Manila and Capgemini
+                        • Rebuilt the Information System Next Generation Organization from three to 70+ Members<br/>
+                        • Connect with Local Organizations for events and partnerships.
+                    </span>
+                </article>
+                <article class="data-title">
+                    <svg class="tiny-svg svg"></svg>
+                    <span>
+                        Creatives Committee
+                    </span>
+                </article>
+                <article class="data-subtitle">
+                    <span>
+                        Part of improving my communication and creative skills. I joined the Information System
+                        Next-Gen Organization and became a creative committee. While there's not a lot of
+                        substantial achievement that we've done, I was able to learn Communication and Leadership
+                        skills by carefully laying out my plans and ideas to the creative head and helping with the
+                        management.
+                    </span>
+                </article>
+            </section>
+            <section class="sub-container">
+                <article class="sub-title">
+                    <svg class="small-svg svg"></svg>
+                    <span>College Tutor</span>
+                </article>
+                <article class="sub-subtitle">
+                    <span>
+                        Teach college students full-stack development focusing on HTML, CSS, JavaScript, PHP,
+                        MongoDB,
+                        MySQL, Angular, and React. Also taught some information management concepts particularly
+                        focusing on
+                        databases.
+                    </span>
+                </article>
+            </section>
+            <section class="sub-container">
+                <article class="sub-title">
+                    <svg class="small-svg svg"></svg>
+                    <span>Logistics Committee</span>
+                </article>
+                <article class="sub-subtitle">
+                    <span>
+                        Being a part of the Student Council in the School of Information Technology provided me with
+                        soft skills that I practice even to this day. As part of the logistics committee, I was
+                        tasked to facilitate events in different ways such as engaging the people, managing
+                        requirements, and ensuring that everything was in place. I also was introduced to the
+                        leadership summit as part of my performance.<br/><br/>
+
+                        Key Skills Applied:<br/>
+                        • Communication<br/>
+                        • Management<br/>
+                        • Leadership
+                    </span>
+                </article>
+            </section>
+        </section>
+
+        <section class="main-container" id="my-education-link">
+            <article class="main-title title">
+                <svg class="big-svg svg"></svg>
+                <span>
+                    Education
+                </span>
+            </article>
+
+            <section class="sub-container">
+                <article class="sub-title">
+                    <svg class="small-svg svg"></svg>
+                    <span>Mapua University</span>
+                </article>
+
+                <section class="data-container">
+                    <article class="data-title">
+                        <svg class="tiny-svg svg"></svg>
+                        <span>
+                            Bachelor of Science in Computer Science -- Specializing in Data Science <br />
+                            (2021 - 2025)
+                        </span>
+                    </article>
+                    <article class="data-title">
+                        <svg class="tiny-svg svg"></svg>
+                        <span>
+                            Master of Science in Artificial Intelligence <br />
+                            (2021 - 2025)
+                        </span>
+                    </article>
+                </section>
+            </section>
+        </section>
+
+        <section class="main-container" id="my-contact-link">
+            <article class="main-title title">
+                <svg class="big-svg svg"></svg>
+                <span>
+                    Contacts
+                </span>
+            </article>
+            <article class="main-subtitle subtitle">
+                <ul id="main__contacts">
+                    <li>
+                        <a href="mailto:renzaguirre@aixand.com"><img src="assets/email.png" alt=""></a>
+                        <a href="mailto:renzaguirre@aixand.com">renzaguirre@aixand.net</a>
+                    </li>
+                    <li>
+                        <a href="https://www.linkedin.com/in/beepboopbit/"><img src="assets/linkedin.png" alt=""></a>
+                        <a href="https://www.linkedin.com/in/beepboopbit/"> /in/beepboopbit/ </a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/BeepBoopBit"><img src="assets/github-white.png" alt=""></a>
+                        <a href="https://github.com/BeepBoopBit"> /BeepBoopBit </a>
+                    </li>
+                </ul>
+            </article>
+        </section>
+
 </body>
+
 </html>

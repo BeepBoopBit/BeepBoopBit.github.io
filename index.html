@@ -12,12 +12,31 @@
         rel="stylesheet">
 
     <script>
+        /*
+            TODO: Create an Update Function per each change in viewport
+            TODO: Create a function to smooth the curves of the lines
+        */
+
+
+        // Get the real position of element with respect to the page
+        function getOffset(el) {
+            const rect = el.getBoundingClientRect();
+            return {
+                x: rect.left + window.scrollX,
+                y: rect.top + window.scrollY,
+                left: rect.left + window.scrollX,
+                top: rect.top + window.scrollY,
+                width: rect.width,
+                height: rect.height
+            };
+        }
 
         function init_svg(el_name, h, w, cx, cy, r, fill = "none", stroke = "white", stroke_width = 1) {
 
             // Get all the SVGs with the same class name
             var svgs = document.getElementsByClassName(el_name);
             for (let i = 0; i < svgs.length; i++) {
+
 
                 // Set the attributes of the SVG
                 svgs[i].setAttribute("height", h);
@@ -33,16 +52,108 @@
                 create_circle.setAttribute("stroke", stroke);
                 create_circle.setAttribute("stroke-width", stroke_width);
 
+                var id = el_name + "-id-" + i;
+                create_circle.setAttribute("id", id);
+
                 // Append the circle element to the SVG
                 svgs[i].appendChild(create_circle);
-            }
 
+            }
+        }
+        
+        function connect_line(el_0, el_1, stroke = "white", stroke_width = 5) {
+
+            // Get the circle elements
+            var circle_0 = document.getElementById(el_0);
+            var circle_1 = document.getElementById(el_1);
+
+            // Create SVG Element
+            var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+            svg.style.position = "absolute";
+
+            // Get the bounding rectangle of the circle elements
+            var rect_0 = getOffset(circle_0);
+            var rect_1 = getOffset(circle_1);
+            //var rect_1 = circle_1.getBoundingClientRect();
+
+
+            // Set the width and height of the SVG
+            svg.style.width = "10px";
+            svg.style.height =  Math.max(rect_0.top, rect_1.top) - Math.min(rect_0.top, rect_1.top) + "px";
+
+            // set the left and top of the SVG
+            var left = Math.min(rect_0.x, rect_1.x) + (Math.max(rect_0.width, rect_1.width) / 2);
+            var top = Math.min(rect_0.y, rect_1.y) + Math.max(rect_0.height, rect_1.height);
+
+            svg.style.left = left + "px";
+            svg.style.top = top + "px";
+
+            var x0 = 0;
+            var y0 = 0;
+
+            var x1 = 0;
+            var y1 = (rect_1.y - rect_0.y) - rect_1.height;
+
+            var line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+            line.setAttribute("x1", 0);
+            line.setAttribute("y1", 0);
+            line.setAttribute("x2", 0);
+            line.setAttribute("y2", y1);
+            line.setAttribute("stroke", stroke);
+            line.setAttribute("stroke-width", stroke_width);
+            line.style.zIndex = -1;
+
+
+            svg.appendChild(line);
+            document.body.appendChild(svg);
         }
 
         window.onload = function () {
+            // Ensure that the user is at the top of the page
+
             init_svg("big-svg", 100, 100, 50, 50, 30);
             init_svg("small-svg", 50, 50, 25, 25, 20);
             init_svg("tiny-svg", 40, 40, 20, 20, 10);
+
+            // TImeout for 1 second
+            setTimeout(() => { }, 1000);
+
+            connect_line("big-svg-id-0", "big-svg-id-1");
+            connect_line("big-svg-id-1", "small-svg-id-0");
+            connect_line("small-svg-id-0", "tiny-svg-id-0");
+            connect_line("tiny-svg-id-0", "tiny-svg-id-1");
+            connect_line("tiny-svg-id-1", "tiny-svg-id-2");
+            connect_line("tiny-svg-id-2", "tiny-svg-id-3");
+            connect_line("tiny-svg-id-3", "small-svg-id-1");
+            connect_line("small-svg-id-1", "tiny-svg-id-4");
+            connect_line("tiny-svg-id-4", "tiny-svg-id-5");
+            connect_line("tiny-svg-id-5", "tiny-svg-id-6");
+            connect_line("tiny-svg-id-6", "tiny-svg-id-7");
+            connect_line("tiny-svg-id-7", "small-svg-id-2");
+            connect_line("small-svg-id-2", "tiny-svg-id-8");
+            connect_line("tiny-svg-id-8", "tiny-svg-id-9");
+            connect_line("tiny-svg-id-9", "tiny-svg-id-10");
+            connect_line("tiny-svg-id-10", "small-svg-id-3");
+            connect_line("small-svg-id-3", "tiny-svg-id-11");
+            connect_line("tiny-svg-id-11", "tiny-svg-id-12");
+            connect_line("tiny-svg-id-12", "big-svg-id-2");
+            connect_line("big-svg-id-2", "small-svg-id-4");
+            connect_line("small-svg-id-4", "small-svg-id-5");
+            connect_line("small-svg-id-5", "small-svg-id-6");
+            connect_line("small-svg-id-6", "small-svg-id-7");
+            connect_line("small-svg-id-7", "big-svg-id-3");
+            connect_line("big-svg-id-3", "small-svg-id-8");
+            connect_line("small-svg-id-8", "small-svg-id-9");
+            connect_line("small-svg-id-9", "tiny-svg-id-13");
+            connect_line("tiny-svg-id-13", "tiny-svg-id-14");
+            connect_line("tiny-svg-id-14", "tiny-svg-id-15");
+            connect_line("tiny-svg-id-15", "small-svg-id-10");
+            connect_line("small-svg-id-10", "small-svg-id-11");
+            connect_line("small-svg-id-11", "big-svg-id-4");
+            connect_line("big-svg-id-4", "small-svg-id-12");
+            connect_line("small-svg-id-12", "tiny-svg-id-16");
+            connect_line("tiny-svg-id-16", "tiny-svg-id-17");
+            connect_line("tiny-svg-id-17", "big-svg-id-5");
         }
 
     </script>
@@ -518,9 +629,9 @@
                 </article>
                 <article class="data-subtitle">
                     <span>
-                        Leads the Board Members to develop strategies and future plans for the organization.<br/>
-                        • Advices executives for their plans and goals<br/>
-                        • Sets goals and makes decisions for the organization<br/>
+                        Leads the Board Members to develop strategies and future plans for the organization.<br />
+                        • Advices executives for their plans and goals<br />
+                        • Sets goals and makes decisions for the organization<br />
                         • Support the organization through finding possible opportunities
                     </span>
                 </article>
@@ -534,11 +645,11 @@
                     <span>
                         Makes decisions, plans events, and engages the community of the organization. As a previous
                         creatives committee of this organization, I was able to experience problems that made
-                        managing the organization hard but with a direction. This then enabled me to:<br/>
-                        • Make the organization as the top 1 organization in Mapua University<br/>
-                        • Enabled the communication between the organization and different companies such as PwC<br/>
+                        managing the organization hard but with a direction. This then enabled me to:<br />
+                        • Make the organization as the top 1 organization in Mapua University<br />
+                        • Enabled the communication between the organization and different companies such as PwC<br />
                         Manila and Capgemini
-                        • Rebuilt the Information System Next Generation Organization from three to 70+ Members<br/>
+                        • Rebuilt the Information System Next Generation Organization from three to 70+ Members<br />
                         • Connect with Local Organizations for events and partnerships.
                     </span>
                 </article>
@@ -584,11 +695,11 @@
                         soft skills that I practice even to this day. As part of the logistics committee, I was
                         tasked to facilitate events in different ways such as engaging the people, managing
                         requirements, and ensuring that everything was in place. I also was introduced to the
-                        leadership summit as part of my performance.<br/><br/>
+                        leadership summit as part of my performance.<br /><br />
 
-                        Key Skills Applied:<br/>
-                        • Communication<br/>
-                        • Management<br/>
+                        Key Skills Applied:<br />
+                        • Communication<br />
+                        • Management<br />
                         • Leadership
                     </span>
                 </article>

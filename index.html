@@ -13,7 +13,6 @@
 
     <script>
         /*
-            TODO: Create an Update Function per each change in viewport
             TODO: Create a function to smooth the curves of the lines
         */
 
@@ -60,6 +59,8 @@
 
             }
         }
+
+        let connected_svgs = []
         
         function connect_line(el_0, el_1, stroke = "white", stroke_width = 5) {
 
@@ -105,19 +106,17 @@
 
 
             svg.appendChild(line);
+            connected_svgs.push(svg);
             document.body.appendChild(svg);
         }
 
-        window.onload = function () {
-            // Ensure that the user is at the top of the page
+        function disconnect_line() {
+            for (let i = 0; i < connected_svgs.length; i++) {
+                connected_svgs[i].remove();
+            }
+        }
 
-            init_svg("big-svg", 100, 100, 50, 50, 30);
-            init_svg("small-svg", 50, 50, 25, 25, 20);
-            init_svg("tiny-svg", 40, 40, 20, 20, 10);
-
-            // TImeout for 1 second
-            setTimeout(() => { }, 1000);
-
+        function init_connections(){
             connect_line("big-svg-id-0", "big-svg-id-1");
             connect_line("big-svg-id-1", "small-svg-id-0");
             connect_line("small-svg-id-0", "tiny-svg-id-0");
@@ -154,6 +153,22 @@
             connect_line("small-svg-id-12", "tiny-svg-id-16");
             connect_line("tiny-svg-id-16", "tiny-svg-id-17");
             connect_line("tiny-svg-id-17", "big-svg-id-5");
+        }
+
+        window.onload = function () {
+            // Ensure that the user is at the top of the page
+
+            init_svg("big-svg", 100, 100, 50, 50, 30);
+            init_svg("small-svg", 50, 50, 25, 25, 20);
+            init_svg("tiny-svg", 40, 40, 20, 20, 10);
+
+            // TImeout for 1 second
+            init_connections();
+        }
+
+        window.onresize = function(){
+            disconnect_line();
+            init_connections();
         }
 
     </script>

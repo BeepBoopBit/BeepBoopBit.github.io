@@ -32,7 +32,9 @@ document.addEventListener('DOMContentLoaded', function() {
     initParticles();
     initScrollAnimations();
     initTypewriter();
-    initSkillBars();
+    initSkillHexagons();
+    initSkillsBackground();
+    initStatCounters();
     initTimeline();
     initContactForm();
     initMatrixRain();
@@ -85,17 +87,66 @@ function initLoadingScreen() {
     const loadingScreen = $('#loading-screen');
     const loadingCommand = $('.loading-command');
     const loadingBar = $('.loading-bar');
+    const bypassBtn = $('#bypassBtn');
     
     if (!loadingScreen || !loadingCommand) return;
     
     let commandIndex = 0;
     let charIndex = 0;
+    let loadingComplete = false;
     
-    function typeCommand() {
-        if (commandIndex >= loadingCommands.length) {
+    // Bypass functionality
+    function bypassLoading() {
+        if (loadingComplete) return;
+        
+        loadingComplete = true;
+        loadingCommand.textContent = 'LOADING BYPASSED - EMERGENCY ACCESS GRANTED';
+        
+        // Quick flash effect
+        loadingScreen.style.background = 'var(--secondary-neon)';
+        setTimeout(() => {
+            loadingScreen.style.background = 'var(--bg-darker)';
             setTimeout(() => {
                 loadingScreen.classList.add('hidden');
+                document.body.classList.remove('loading');
+                document.body.classList.add('zoom-in');
                 document.body.style.overflow = 'auto';
+                
+                // Remove zoom class after animation
+                setTimeout(() => {
+                    document.body.classList.remove('zoom-in');
+                }, 1500);
+            }, 200);
+        }, 100);
+    }
+    
+    // Event listeners for bypass
+    if (bypassBtn) {
+        bypassBtn.addEventListener('click', bypassLoading);
+    }
+    
+    // ESC key bypass
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && !loadingComplete) {
+            bypassLoading();
+        }
+    });
+    
+    function typeCommand() {
+        if (loadingComplete) return;
+        
+        if (commandIndex >= loadingCommands.length) {
+            loadingComplete = true;
+            setTimeout(() => {
+                loadingScreen.classList.add('hidden');
+                document.body.classList.remove('loading');
+                document.body.classList.add('zoom-in');
+                document.body.style.overflow = 'auto';
+                
+                // Remove zoom class after animation
+                setTimeout(() => {
+                    document.body.classList.remove('zoom-in');
+                }, 1500);
             }, 1000);
             return;
         }
@@ -117,6 +168,9 @@ function initLoadingScreen() {
     
     // Start typing animation
     setTimeout(typeCommand, 500);
+    
+    // Set loading state on body
+    document.body.classList.add('loading');
 }
 
 // Matrix Rain Effect
@@ -234,9 +288,10 @@ function initScrollAnimations() {
             if (entry.isIntersecting) {
                 entry.target.classList.add('revealed');
                 
-                // Trigger skill bar animations
+                // Trigger skill hexagon animations and stats
                 if (entry.target.classList.contains('skills')) {
-                    animateSkillBars();
+                    animateSkillHexagons();
+                    animateStatCounters();
                 }
                 
                 // Trigger timeline animations
@@ -295,29 +350,270 @@ function initTypewriter() {
     setTimeout(type, 1000);
 }
 
-// Skill Bar Animations
-function initSkillBars() {
-    const skillBars = $$('.skill-item');
-    skillBars.forEach((item, index) => {
-        const skillFill = item.querySelector('.skill-fill');
-        const level = item.dataset.level;
-        
-        if (skillFill && level) {
-            // Store the level for later animation
-            skillFill.dataset.level = level;
-        }
+// DNA & Command Center Animations
+function initSkillHexagons() {
+    // Initialize DNA molecules and data packets
+    const languageMolecules = $$('.language-molecule');
+    const dataPackets = $$('.data-packet');
+    const signalBars = $$('.signal-bars');
+    const summaryBars = $$('.bar-fill');
+    
+    // Set initial states for DNA molecules
+    languageMolecules.forEach(molecule => {
+        molecule.style.opacity = '0';
+        molecule.style.transform = molecule.style.transform + ' scale(0)';
+    });
+    
+    // Set initial states for data packets
+    dataPackets.forEach(packet => {
+        packet.style.opacity = '0';
+        packet.style.transform = 'translateX(-50px)';
+    });
+    
+    // Hide signal bars initially
+    signalBars.forEach(bars => {
+        const barElements = bars.querySelectorAll('.bar');
+        barElements.forEach(bar => {
+            bar.style.height = '2px';
+        });
+    });
+    
+    // Set initial states for summary bars
+    summaryBars.forEach(bar => {
+        bar.style.width = '0';
     });
 }
 
-function animateSkillBars() {
-    const skillFills = $$('.skill-fill');
-    skillFills.forEach((fill, index) => {
-        const level = fill.dataset.level;
-        if (level) {
+function animateSkillHexagons() {
+    // Animate DNA molecules with improved spacing
+    const languageMolecules = $$('.language-molecule');
+    languageMolecules.forEach((molecule, index) => {
+        setTimeout(() => {
+            molecule.style.transition = 'all 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
+            molecule.style.opacity = '1';
+            molecule.style.transform = molecule.style.transform.replace('scale(0)', 'scale(1)');
+            
+            // Add molecular glow effect
             setTimeout(() => {
-                fill.style.width = level + '%';
-            }, index * 100);
+                molecule.style.filter = 'drop-shadow(0 0 15px currentColor)';
+                setTimeout(() => {
+                    molecule.style.filter = 'drop-shadow(0 0 8px currentColor)';
+                }, 1200);
+            }, 600);
+        }, index * 400);
+    });
+    
+    // Animate skills summary bars
+    const summaryBars = $$('.bar-fill');
+    summaryBars.forEach((bar, index) => {
+        const targetWidth = bar.style.getPropertyValue('--width');
+        setTimeout(() => {
+            bar.style.width = targetWidth;
+        }, 1500 + (index * 200));
+    });
+    
+    // Animate command center data packets
+    const dataPackets = $$('.data-packet');
+    dataPackets.forEach((packet, index) => {
+        setTimeout(() => {
+            packet.style.transition = 'all 0.6s ease-out';
+            packet.style.opacity = '1';
+            packet.style.transform = 'translateX(0)';
+            
+            // Animate signal bars
+            const bars = packet.querySelectorAll('.bar');
+            bars.forEach((bar, barIndex) => {
+                setTimeout(() => {
+                    bar.style.transition = 'height 0.4s ease-out';
+                    // Height is already set in CSS based on skill level
+                }, barIndex * 100);
+            });
+            
+        }, 3000 + (index * 150));
+    });
+    
+    // Animate hologram ring
+    const hologramRing = $('.hologram-ring');
+    if (hologramRing) {
+        setTimeout(() => {
+            hologramRing.style.filter = 'drop-shadow(0 0 20px var(--primary-neon))';
+        }, 4000);
+    }
+    
+    // Animate system status
+    const statusValues = $$('.status-value');
+    statusValues.forEach((status, index) => {
+        setTimeout(() => {
+            status.style.animation = 'textGlow 0.5s ease-out';
+        }, 4500 + (index * 200));
+    });
+}
+
+// Skills Background Effects
+function initSkillsBackground() {
+    initNeuralNetwork();
+    initCodeRain();
+    initSkillParticles();
+}
+
+function initNeuralNetwork() {
+    const neuralNetwork = $('#neuralNetwork');
+    if (!neuralNetwork) return;
+    
+    const nodes = 20;
+    const connections = [];
+    
+    // Create nodes
+    for (let i = 0; i < nodes; i++) {
+        const node = document.createElement('div');
+        node.className = 'neural-node';
+        node.style.cssText = `
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--primary-neon);
+            border-radius: 50%;
+            left: ${Math.random() * 100}%;
+            top: ${Math.random() * 100}%;
+            box-shadow: 0 0 10px var(--primary-neon);
+            animation: neuralPulse ${2 + Math.random() * 3}s ease-in-out infinite;
+        `;
+        neuralNetwork.appendChild(node);
+    }
+    
+    // Create connections (SVG lines)
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.style.cssText = `
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+    `;
+    
+    const nodes_elements = neuralNetwork.querySelectorAll('.neural-node');
+    for (let i = 0; i < nodes_elements.length - 1; i++) {
+        if (Math.random() > 0.7) continue; // Only connect some nodes
+        
+        const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        line.setAttribute('x1', '0');
+        line.setAttribute('y1', '0');
+        line.setAttribute('x2', '100');
+        line.setAttribute('y2', '100');
+        line.setAttribute('stroke', 'var(--primary-neon)');
+        line.setAttribute('stroke-width', '0.5');
+        line.setAttribute('opacity', '0.3');
+        line.style.animation = `neuralFlow ${3 + Math.random() * 4}s ease-in-out infinite`;
+        
+        svg.appendChild(line);
+    }
+    
+    neuralNetwork.appendChild(svg);
+}
+
+function initCodeRain() {
+    const codeRain = $('#codeRain');
+    if (!codeRain) return;
+    
+    const codeSnippets = [
+        'function()', 'const', 'let', 'var', 'if()', 'else', 'for()', 'while()', 
+        'class', 'return', '{}', '[]', '=>', '===', '!==', '&&', '||',
+        'async', 'await', 'promise', 'React', 'Angular', 'Vue', 'Node',
+        'Python', 'JavaScript', 'TypeScript', 'HTML', 'CSS', 'SQL'
+    ];
+    
+    const columns = Math.floor(window.innerWidth / 50);
+    
+    for (let i = 0; i < columns; i++) {
+        setTimeout(() => {
+            createCodeColumn(codeRain, i * 50, codeSnippets);
+        }, Math.random() * 2000);
+    }
+}
+
+function createCodeColumn(container, x, snippets) {
+    const column = document.createElement('div');
+    column.style.cssText = `
+        position: absolute;
+        left: ${x}px;
+        top: -50px;
+        font-family: var(--font-mono);
+        font-size: 12px;
+        color: var(--primary-neon);
+        opacity: 0.3;
+        animation: codefall ${8 + Math.random() * 5}s linear infinite;
+        animation-delay: ${Math.random() * 3}s;
+    `;
+    
+    // Add random code snippets
+    for (let i = 0; i < 10; i++) {
+        const snippet = document.createElement('div');
+        snippet.textContent = snippets[Math.floor(Math.random() * snippets.length)];
+        snippet.style.marginBottom = '20px';
+        column.appendChild(snippet);
+    }
+    
+    container.appendChild(column);
+    
+    // Remove column after animation
+    setTimeout(() => {
+        if (column.parentNode) {
+            column.parentNode.removeChild(column);
         }
+        // Recreate column for continuous effect
+        createCodeColumn(container, x, snippets);
+    }, 13000);
+}
+
+function initSkillParticles() {
+    const skillParticles = $('#skillParticles');
+    if (!skillParticles) return;
+    
+    const particleCount = 30;
+    
+    for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'skill-particle';
+        particle.style.cssText = `
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: var(--accent-neon);
+            border-radius: 50%;
+            left: ${Math.random() * 100}%;
+            top: ${Math.random() * 100}%;
+            animation: skillParticleFloat ${5 + Math.random() * 10}s ease-in-out infinite;
+            animation-delay: ${Math.random() * 5}s;
+        `;
+        skillParticles.appendChild(particle);
+    }
+}
+
+// Statistics Counter Animation
+function initStatCounters() {
+    // Just initialize, animation happens when scrolled into view
+}
+
+function animateStatCounters() {
+    const statNumbers = $$('.stat-number');
+    
+    statNumbers.forEach((stat, index) => {
+        const target = parseInt(stat.getAttribute('data-target'));
+        const duration = 2000; // 2 seconds
+        const increment = target / (duration / 16); // 60fps
+        let current = 0;
+        
+        setTimeout(() => {
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    current = target;
+                    clearInterval(timer);
+                }
+                stat.textContent = Math.floor(current);
+            }, 16);
+        }, index * 200);
     });
 }
 

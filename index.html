@@ -26,6 +26,16 @@
                 <div class="loading-bar"></div>
             </div>
         </div>
+        <div class="emergency-bypass">
+            <button class="bypass-btn" id="bypassBtn">
+                <span class="bypass-icon">⚡</span>
+                <div class="bypass-text">
+                    <div class="bypass-main">EMERGENCY BYPASS</div>
+                    <div class="bypass-sub">[ ESC ] or CLICK</div>
+                </div>
+                <div class="bypass-glow"></div>
+            </button>
+        </div>
         <div class="matrix-rain"></div>
     </div>
 
@@ -171,123 +181,479 @@
                 </div>
             </div>
         </div>
-    </section>
+            </section>
 
     <!-- Skills Section -->
     <section id="skills" class="section skills">
+        <div class="skills-background">
+            <div class="neural-network" id="neuralNetwork"></div>
+            <div class="code-rain" id="codeRain"></div>
+            <div class="skill-particles" id="skillParticles"></div>
+        </div>
         <div class="container">
             <h2 class="section-title">
                 <span class="section-number">02.</span>
                 Skills & Expertise
             </h2>
+            <div class="skills-intro">
+                <div class="terminal-window">
+                    <div class="terminal-header">
+                        <div class="terminal-controls">
+                            <span class="terminal-dot red"></span>
+                            <span class="terminal-dot yellow"></span>
+                            <span class="terminal-dot green"></span>
+                        </div>
+                        <span class="terminal-title">skills_analyzer.exe</span>
+                    </div>
+                    <div class="terminal-body">
+                        <div class="terminal-line">
+                            <span class="prompt">root@skills:~$</span>
+                            <span class="command">./analyze_developer_skills.sh --verbose</span>
+                        </div>
+                        <div class="terminal-output">
+                            <span class="success">✓ Scanning expertise matrix...</span>
+                            <span class="info">ℹ Found 14+ technologies with measurable proficiency</span>
+                            <span class="warning">⚠ High-level expertise detected in multiple domains</span>
+                            <span class="success">✓ Analysis complete - Developer status: ADVANCED</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="skills-content">
-                <div class="skill-categories">
-                    <div class="skill-category">
-                        <h3>Languages</h3>
-                        <div class="skill-grid">
-                            <div class="skill-item" data-level="90">
-                                <span>HTML/CSS</span>
-                                <div class="skill-bar">
-                                    <div class="skill-fill"></div>
+                <!-- Programming Languages DNA Helix -->
+                <div class="languages-section">
+                    <div class="section-header">
+                        <h3>[ CORE_PROGRAMMING_LANGUAGES ]</h3>
+                        <div class="header-scanner"></div>
+                    </div>
+                    <div class="languages-layout">
+                        <div class="dna-container">
+                            <div class="dna-helix" id="dnaHelix">
+                                <div class="dna-strand strand-1"></div>
+                                <div class="dna-strand strand-2"></div>
+                                
+                                <div class="orbit-ring ring-1">
+                                    <div class="language-molecule expert" data-skill="HTML/CSS" data-level="90" data-years="4" style="--orbit-delay: 0s">
+                                        <div class="molecule-core">
+                                            <span class="molecule-symbol">HC</span>
+                                            <div class="electron-orbit">
+                                                <div class="electron"></div>
+                                            </div>
+                                        </div>
+                                        <div class="molecule-data">
+                                            <span class="molecule-name">HTML/CSS</span>
+                                            <span class="molecule-level">EXPERT</span>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="skill-item" data-level="85">
-                                <span>JavaScript</span>
-                                <div class="skill-bar">
-                                    <div class="skill-fill"></div>
+                                
+                                <div class="orbit-ring ring-2">
+                                    <div class="language-molecule expert" data-skill="JavaScript" data-level="85" data-years="3" style="--orbit-delay: -5s">
+                                        <div class="molecule-core">
+                                            <span class="molecule-symbol">JS</span>
+                                            <div class="electron-orbit">
+                                                <div class="electron"></div>
+                                            </div>
+                                        </div>
+                                        <div class="molecule-data">
+                                            <span class="molecule-name">JavaScript</span>
+                                            <span class="molecule-level">EXPERT</span>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="skill-item" data-level="80">
-                                <span>TypeScript</span>
-                                <div class="skill-bar">
-                                    <div class="skill-fill"></div>
+                                
+                                <div class="orbit-ring ring-3">
+                                    <div class="language-molecule advanced" data-skill="TypeScript" data-level="80" data-years="2" style="--orbit-delay: -10s">
+                                        <div class="molecule-core">
+                                            <span class="molecule-symbol">TS</span>
+                                            <div class="electron-orbit">
+                                                <div class="electron"></div>
+                                            </div>
+                                        </div>
+                                        <div class="molecule-data">
+                                            <span class="molecule-name">TypeScript</span>
+                                            <span class="molecule-level">ADVANCED</span>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="skill-item" data-level="75">
-                                <span>Python</span>
-                                <div class="skill-bar">
-                                    <div class="skill-fill"></div>
+                                
+                                <div class="orbit-ring ring-4">
+                                    <div class="language-molecule advanced" data-skill="Python" data-level="75" data-years="3" style="--orbit-delay: -15s">
+                                        <div class="molecule-core">
+                                            <span class="molecule-symbol">PY</span>
+                                            <div class="electron-orbit">
+                                                <div class="electron"></div>
+                                            </div>
+                                        </div>
+                                        <div class="molecule-data">
+                                            <span class="molecule-name">Python</span>
+                                            <span class="molecule-level">ADVANCED</span>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="skill-item" data-level="70">
-                                <span>C++</span>
-                                <div class="skill-bar">
-                                    <div class="skill-fill"></div>
+                                
+                                <div class="orbit-ring ring-5">
+                                    <div class="language-molecule advanced" data-skill="C++" data-level="70" data-years="2" style="--orbit-delay: -20s">
+                                        <div class="molecule-core">
+                                            <span class="molecule-symbol">C+</span>
+                                            <div class="electron-orbit">
+                                                <div class="electron"></div>
+                                            </div>
+                                        </div>
+                                        <div class="molecule-data">
+                                            <span class="molecule-name">C++</span>
+                                            <span class="molecule-level">ADVANCED</span>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="skill-item" data-level="60">
-                                <span>C</span>
-                                <div class="skill-bar">
-                                    <div class="skill-fill"></div>
+                                
+                                <div class="orbit-ring ring-6">
+                                    <div class="language-molecule intermediate" data-skill="C" data-level="60" data-years="2" style="--orbit-delay: -25s">
+                                        <div class="molecule-core">
+                                            <span class="molecule-symbol">C</span>
+                                            <div class="electron-orbit">
+                                                <div class="electron"></div>
+                                            </div>
+                                        </div>
+                                        <div class="molecule-data">
+                                            <span class="molecule-name">C</span>
+                                            <span class="molecule-level">INTERMEDIATE</span>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="skill-item" data-level="40">
-                                <span>Rust</span>
-                                <div class="skill-bar">
-                                    <div class="skill-fill"></div>
+                                
+                                <div class="orbit-ring ring-7">
+                                    <div class="language-molecule beginner" data-skill="Rust" data-level="40" data-years="1" style="--orbit-delay: -30s">
+                                        <div class="molecule-core">
+                                            <span class="molecule-symbol">RS</span>
+                                            <div class="electron-orbit">
+                                                <div class="electron"></div>
+                                            </div>
+                                        </div>
+                                        <div class="molecule-data">
+                                            <span class="molecule-name">Rust</span>
+                                            <span class="molecule-level">BEGINNER</span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    
-                    <div class="skill-category">
-                        <h3>Frameworks & Tools</h3>
-                        <div class="skill-grid">
-                            <div class="skill-item" data-level="80">
-                                <span>Angular</span>
-                                <div class="skill-bar">
-                                    <div class="skill-fill"></div>
-                                </div>
+                        
+                        <div class="skills-summary">
+                            <div class="summary-header">
+                                <h4>LANGUAGE_ANALYSIS</h4>
+                                <div class="scan-indicator"></div>
                             </div>
-                            <div class="skill-item" data-level="70">
-                                <span>React</span>
-                                <div class="skill-bar">
-                                    <div class="skill-fill"></div>
+                            <div class="summary-list">
+                                <div class="skill-entry expert">
+                                    <div class="skill-info">
+                                        <span class="skill-name">HTML/CSS</span>
+                                        <span class="skill-years">4 YEARS</span>
+                                    </div>
+                                    <div class="skill-bar-container">
+                                        <div class="skill-bar expert" data-level="90">
+                                            <div class="bar-fill" style="--width: 90%"></div>
+                                        </div>
+                                        <span class="skill-label">EXPERT</span>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="skill-item" data-level="85">
-                                <span>Git</span>
-                                <div class="skill-bar">
-                                    <div class="skill-fill"></div>
+                                
+                                <div class="skill-entry expert">
+                                    <div class="skill-info">
+                                        <span class="skill-name">JavaScript</span>
+                                        <span class="skill-years">3 YEARS</span>
+                                    </div>
+                                    <div class="skill-bar-container">
+                                        <div class="skill-bar expert" data-level="85">
+                                            <div class="bar-fill" style="--width: 85%"></div>
+                                        </div>
+                                        <span class="skill-label">EXPERT</span>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="skill-item" data-level="75">
-                                <span>MySQL</span>
-                                <div class="skill-bar">
-                                    <div class="skill-fill"></div>
+                                
+                                <div class="skill-entry advanced">
+                                    <div class="skill-info">
+                                        <span class="skill-name">TypeScript</span>
+                                        <span class="skill-years">2 YEARS</span>
+                                    </div>
+                                    <div class="skill-bar-container">
+                                        <div class="skill-bar advanced" data-level="80">
+                                            <div class="bar-fill" style="--width: 80%"></div>
+                                        </div>
+                                        <span class="skill-label">ADVANCED</span>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="skill-item" data-level="70">
-                                <span>PostgreSQL</span>
-                                <div class="skill-bar">
-                                    <div class="skill-fill"></div>
+                                
+                                <div class="skill-entry advanced">
+                                    <div class="skill-info">
+                                        <span class="skill-name">Python</span>
+                                        <span class="skill-years">3 YEARS</span>
+                                    </div>
+                                    <div class="skill-bar-container">
+                                        <div class="skill-bar advanced" data-level="75">
+                                            <div class="bar-fill" style="--width: 75%"></div>
+                                        </div>
+                                        <span class="skill-label">ADVANCED</span>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="skill-item" data-level="70">
-                                <span>MongoDB</span>
-                                <div class="skill-bar">
-                                    <div class="skill-fill"></div>
+                                
+                                <div class="skill-entry advanced">
+                                    <div class="skill-info">
+                                        <span class="skill-name">C++</span>
+                                        <span class="skill-years">2 YEARS</span>
+                                    </div>
+                                    <div class="skill-bar-container">
+                                        <div class="skill-bar advanced" data-level="70">
+                                            <div class="bar-fill" style="--width: 70%"></div>
+                                        </div>
+                                        <span class="skill-label">ADVANCED</span>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="skill-item" data-level="65">
-                                <span>Docker</span>
-                                <div class="skill-bar">
-                                    <div class="skill-fill"></div>
+                                
+                                <div class="skill-entry intermediate">
+                                    <div class="skill-info">
+                                        <span class="skill-name">C</span>
+                                        <span class="skill-years">2 YEARS</span>
+                                    </div>
+                                    <div class="skill-bar-container">
+                                        <div class="skill-bar intermediate" data-level="60">
+                                            <div class="bar-fill" style="--width: 60%"></div>
+                                        </div>
+                                        <span class="skill-label">INTERMEDIATE</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="skill-entry beginner">
+                                    <div class="skill-info">
+                                        <span class="skill-name">Rust</span>
+                                        <span class="skill-years">1 YEAR</span>
+                                    </div>
+                                    <div class="skill-bar-container">
+                                        <div class="skill-bar beginner" data-level="40">
+                                            <div class="bar-fill" style="--width: 40%"></div>
+                                        </div>
+                                        <span class="skill-label">BEGINNER</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
+                <!-- Command Center Interface -->
+                <div class="command-center-section">
+                    <div class="section-header">
+                        <h3>[ DEVELOPMENT_COMMAND_CENTER ]</h3>
+                        <div class="header-scanner"></div>
+                    </div>
+                    
+                    <div class="command-center" id="commandCenter">
+                        <div class="hud-overlay">
+                            <div class="scan-lines"></div>
+                            <div class="corner-brackets top-left"></div>
+                            <div class="corner-brackets top-right"></div>
+                            <div class="corner-brackets bottom-left"></div>
+                            <div class="corner-brackets bottom-right"></div>
+                        </div>
+                        
+                        <div class="center-display">
+                            <div class="hologram-ring"></div>
+                            <div class="data-core">
+                                <div class="core-text">TECH STACK</div>
+                                <div class="core-version">v2.0.25</div>
+                            </div>
+                        </div>
+                        
+                        <div class="data-streams">
+                            <div class="stream-group frontend-stream" data-category="Frontend">
+                                <div class="stream-header">
+                                    <span class="stream-icon">⚡</span>
+                                    <span class="stream-title">FRONTEND_SYSTEMS</span>
+                                </div>
+                                <div class="data-flow">
+                                    <div class="data-packet expert" data-name="Angular" data-level="80" data-years="2">
+                                        <span class="packet-name">ANGULAR</span>
+                                        <div class="signal-bars">
+                                            <div class="bar"></div>
+                                            <div class="bar"></div>
+                                            <div class="bar"></div>
+                                            <div class="bar"></div>
+                                        </div>
+                                        <span class="packet-power">80%</span>
+                                    </div>
+                                    <div class="data-packet advanced" data-name="React" data-level="70" data-years="1">
+                                        <span class="packet-name">REACT</span>
+                                        <div class="signal-bars">
+                                            <div class="bar"></div>
+                                            <div class="bar"></div>
+                                            <div class="bar"></div>
+                                            <div class="bar"></div>
+                                        </div>
+                                        <span class="packet-power">70%</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="stream-group database-stream" data-category="Database">
+                                <div class="stream-header">
+                                    <span class="stream-icon">🗄️</span>
+                                    <span class="stream-title">DATABASE_PROTOCOLS</span>
+                                </div>
+                                <div class="data-flow">
+                                    <div class="data-packet advanced" data-name="MySQL" data-level="75" data-years="2">
+                                        <span class="packet-name">MYSQL</span>
+                                        <div class="signal-bars">
+                                            <div class="bar"></div>
+                                            <div class="bar"></div>
+                                            <div class="bar"></div>
+                                            <div class="bar"></div>
+                                        </div>
+                                        <span class="packet-power">75%</span>
+                                    </div>
+                                    <div class="data-packet advanced" data-name="PostgreSQL" data-level="70" data-years="2">
+                                        <span class="packet-name">POSTGRESQL</span>
+                                        <div class="signal-bars">
+                                            <div class="bar"></div>
+                                            <div class="bar"></div>
+                                            <div class="bar"></div>
+                                            <div class="bar"></div>
+                                        </div>
+                                        <span class="packet-power">70%</span>
+                                    </div>
+                                    <div class="data-packet advanced" data-name="MongoDB" data-level="70" data-years="2">
+                                        <span class="packet-name">MONGODB</span>
+                                        <div class="signal-bars">
+                                            <div class="bar"></div>
+                                            <div class="bar"></div>
+                                            <div class="bar"></div>
+                                            <div class="bar"></div>
+                                        </div>
+                                        <span class="packet-power">70%</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="stream-group devtools-stream" data-category="DevTools">
+                                <div class="stream-header">
+                                    <span class="stream-icon">🛠️</span>
+                                    <span class="stream-title">DEVELOPMENT_TOOLS</span>
+                                </div>
+                                <div class="data-flow">
+                                    <div class="data-packet expert" data-name="Git" data-level="85" data-years="3">
+                                        <span class="packet-name">GIT</span>
+                                        <div class="signal-bars">
+                                            <div class="bar"></div>
+                                            <div class="bar"></div>
+                                            <div class="bar"></div>
+                                            <div class="bar"></div>
+                                        </div>
+                                        <span class="packet-power">85%</span>
+                                    </div>
+                                    <div class="data-packet intermediate" data-name="Docker" data-level="65" data-years="1">
+                                        <span class="packet-name">DOCKER</span>
+                                        <div class="signal-bars">
+                                            <div class="bar"></div>
+                                            <div class="bar"></div>
+                                            <div class="bar"></div>
+                                            <div class="bar"></div>
+                                        </div>
+                                        <span class="packet-power">65%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="system-status">
+                            <div class="status-line">
+                                <span class="status-label">SYSTEM_STATUS:</span>
+                                <span class="status-value online">OPERATIONAL</span>
+                            </div>
+                            <div class="status-line">
+                                <span class="status-label">TOTAL_PROTOCOLS:</span>
+                                <span class="status-value">14_ACTIVE</span>
+                            </div>
+                            <div class="status-line">
+                                <span class="status-label">EXPERIENCE_LEVEL:</span>
+                                <span class="status-value expert">SENIOR_DEVELOPER</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
                 
-                <div class="skill-cloud">
-                    <div class="floating-skill" style="--delay: 0s">AI</div>
-                    <div class="floating-skill" style="--delay: 1s">Machine Learning</div>
-                    <div class="floating-skill" style="--delay: 2s">Web Development</div>
-                    <div class="floating-skill" style="--delay: 3s">Data Science</div>
-                    <div class="floating-skill" style="--delay: 4s">Game Development</div>
-                    <div class="floating-skill" style="--delay: 5s">Full-Stack</div>
-                    <div class="floating-skill" style="--delay: 6s">Leadership</div>
-                    <div class="floating-skill" style="--delay: 7s">Problem Solving</div>
+                <div class="skills-statistics">
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon">💻</div>
+                            <div class="stat-number" data-target="14">0</div>
+                            <div class="stat-label">Technologies</div>
+                            <div class="stat-detail">Actively Used</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">🚀</div>
+                            <div class="stat-number" data-target="50">0</div>
+                            <div class="stat-label">Projects</div>
+                            <div class="stat-detail">Completed</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">⭐</div>
+                            <div class="stat-number" data-target="4">0</div>
+                            <div class="stat-label">Years</div>
+                            <div class="stat-detail">Experience</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">🏆</div>
+                            <div class="stat-number" data-target="85">0</div>
+                            <div class="stat-label">Average</div>
+                            <div class="stat-detail">Skill Level</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skill-domains">
+                    <h3 class="domains-title">Specialized Domains</h3>
+                    <div class="domains-grid">
+                        <div class="domain-card">
+                            <div class="domain-icon">🌐</div>
+                            <h4>Full-Stack Development</h4>
+                            <p>End-to-end web application development with modern frameworks and databases</p>
+                            <div class="domain-tech">
+                                <span>Frontend</span>
+                                <span>Backend</span>
+                                <span>Databases</span>
+                            </div>
+                        </div>
+                        <div class="domain-card">
+                            <div class="domain-icon">🤖</div>
+                            <h4>AI & Machine Learning</h4>
+                            <p>Developing intelligent systems and data-driven applications</p>
+                            <div class="domain-tech">
+                                <span>TensorFlow</span>
+                                <span>PyTorch</span>
+                                <span>Data Analysis</span>
+                            </div>
+                        </div>
+                        <div class="domain-card">
+                            <div class="domain-icon">🎮</div>
+                            <h4>Game Development</h4>
+                            <p>Creating immersive gaming experiences and interactive applications</p>
+                            <div class="domain-tech">
+                                <span>Unity</span>
+                                <span>C#</span>
+                                <span>Game Design</span>
+                            </div>
+                        </div>
+                        <div class="domain-card">
+                            <div class="domain-icon">👥</div>
+                            <h4>Technical Leadership</h4>
+                            <p>Leading development teams and driving technical innovation</p>
+                            <div class="domain-tech">
+                                <span>Management</span>
+                                <span>Mentoring</span>
+                                <span>Strategy</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -515,7 +881,7 @@
                 </div>
             </div>
         </div>
-    </section>
+        </section>
 
     <!-- Contact Section -->
     <section id="contact" class="section contact">
@@ -573,7 +939,7 @@
                 </div>
             </div>
         </div>
-    </section>
+        </section>
 
     <!-- Footer -->
     <footer class="footer">

@@ -1,784 +1,592 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BeepBoopBit | Github Portfolio</title>
-    <link rel="stylesheet" href="main.css">
+    <title>Renz Aguirre | Cyber Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
-        rel="stylesheet">
-
-    <script>
-        /*
-            TODO: Create a function to smooth the curves of the lines
-        */
-
-
-        // Get the real position of element with respect to the page
-        function getOffset(el) {
-            const rect = el.getBoundingClientRect();
-            return {
-                x: rect.left + window.scrollX,
-                y: rect.top + window.scrollY,
-                left: rect.left + window.scrollX,
-                top: rect.top + window.scrollY,
-                width: rect.width,
-                height: rect.height
-            };
-        }
-
-        function init_svg(el_name, h, w, cx, cy, r, fill = "none", stroke = "white", stroke_width = 1) {
-
-            // Get all the SVGs with the same class name
-            var svgs = document.getElementsByClassName(el_name);
-            for (let i = 0; i < svgs.length; i++) {
-
-
-                // Set the attributes of the SVG
-                svgs[i].setAttribute("height", h);
-                svgs[i].setAttribute("width", w);
-                svgs[i].setAttribute("xmlns", "http://www.w3.org/2000/svg");
-
-                // Create a circle element
-                let create_circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-                create_circle.setAttribute("cx", cx);
-                create_circle.setAttribute("cy", cy);
-                create_circle.setAttribute("r", r);
-                create_circle.setAttribute("fill", fill);
-                create_circle.setAttribute("stroke", stroke);
-                create_circle.setAttribute("stroke-width", stroke_width);
-
-                var id = el_name + "-id-" + i;
-                create_circle.setAttribute("id", id);
-
-                // Append the circle element to the SVG
-                svgs[i].appendChild(create_circle);
-
-            }
-        }
-
-        let connected_svgs = []
-        
-        function connect_line(el_0, el_1, stroke = "white", stroke_width = 5) {
-
-            // Get the circle elements
-            var circle_0 = document.getElementById(el_0);
-            var circle_1 = document.getElementById(el_1);
-
-            // Create SVG Element
-            var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-            svg.style.position = "absolute";
-
-            // Get the bounding rectangle of the circle elements
-            var rect_0 = getOffset(circle_0);
-            var rect_1 = getOffset(circle_1);
-            //var rect_1 = circle_1.getBoundingClientRect();
-
-
-            // Set the width and height of the SVG
-            svg.style.width = "10px";
-            svg.style.height =  Math.max(rect_0.top, rect_1.top) - Math.min(rect_0.top, rect_1.top) + "px";
-
-            // set the left and top of the SVG
-            var left = Math.min(rect_0.x, rect_1.x) + (Math.max(rect_0.width, rect_1.width) / 2);
-            var top = Math.min(rect_0.y, rect_1.y) + Math.max(rect_0.height, rect_1.height);
-
-            svg.style.left = left + "px";
-            svg.style.top = top + "px";
-
-            var x0 = 0;
-            var y0 = 0;
-
-            var x1 = 0;
-            var y1 = (rect_1.y - rect_0.y) - rect_1.height;
-
-            var line = document.createElementNS("http://www.w3.org/2000/svg", "line");
-            line.setAttribute("x1", 0);
-            line.setAttribute("y1", 0);
-            line.setAttribute("x2", 0);
-            line.setAttribute("y2", y1);
-            line.setAttribute("stroke", stroke);
-            line.setAttribute("stroke-width", stroke_width);
-            line.style.zIndex = -1;
-
-
-            svg.appendChild(line);
-            connected_svgs.push(svg);
-            document.body.appendChild(svg);
-        }
-
-        function disconnect_line() {
-            for (let i = 0; i < connected_svgs.length; i++) {
-                connected_svgs[i].remove();
-            }
-        }
-
-        function init_connections(){
-            connect_line("big-svg-id-0", "big-svg-id-1");
-            connect_line("big-svg-id-1", "small-svg-id-0");
-            connect_line("small-svg-id-0", "tiny-svg-id-0");
-            connect_line("tiny-svg-id-0", "tiny-svg-id-1");
-            connect_line("tiny-svg-id-1", "tiny-svg-id-2");
-            connect_line("tiny-svg-id-2", "tiny-svg-id-3");
-            connect_line("tiny-svg-id-3", "small-svg-id-1");
-            connect_line("small-svg-id-1", "tiny-svg-id-4");
-            connect_line("tiny-svg-id-4", "tiny-svg-id-5");
-            connect_line("tiny-svg-id-5", "tiny-svg-id-6");
-            connect_line("tiny-svg-id-6", "tiny-svg-id-7");
-            connect_line("tiny-svg-id-7", "small-svg-id-2");
-            connect_line("small-svg-id-2", "tiny-svg-id-8");
-            connect_line("tiny-svg-id-8", "tiny-svg-id-9");
-            connect_line("tiny-svg-id-9", "tiny-svg-id-10");
-            connect_line("tiny-svg-id-10", "small-svg-id-3");
-            connect_line("small-svg-id-3", "tiny-svg-id-11");
-            connect_line("tiny-svg-id-11", "tiny-svg-id-12");
-            connect_line("tiny-svg-id-12", "big-svg-id-2");
-            connect_line("big-svg-id-2", "small-svg-id-4");
-            connect_line("small-svg-id-4", "small-svg-id-5");
-            connect_line("small-svg-id-5", "small-svg-id-6");
-            connect_line("small-svg-id-6", "small-svg-id-7");
-            connect_line("small-svg-id-7", "big-svg-id-3");
-            connect_line("big-svg-id-3", "small-svg-id-8");
-            connect_line("small-svg-id-8", "small-svg-id-9");
-            connect_line("small-svg-id-9", "tiny-svg-id-13");
-            connect_line("tiny-svg-id-13", "tiny-svg-id-14");
-            connect_line("tiny-svg-id-14", "tiny-svg-id-15");
-            connect_line("tiny-svg-id-15", "small-svg-id-10");
-            connect_line("small-svg-id-10", "small-svg-id-11");
-            connect_line("small-svg-id-11", "big-svg-id-4");
-            connect_line("big-svg-id-4", "small-svg-id-12");
-            connect_line("small-svg-id-12", "tiny-svg-id-16");
-            connect_line("tiny-svg-id-16", "tiny-svg-id-17");
-            connect_line("tiny-svg-id-17", "big-svg-id-5");
-        }
-
-        window.onload = function () {
-            // Ensure that the user is at the top of the page
-
-            init_svg("big-svg", 100, 100, 50, 50, 30);
-            init_svg("small-svg", 50, 50, 25, 25, 20);
-            init_svg("tiny-svg", 40, 40, 20, 20, 10);
-
-            // TImeout for 1 second
-            init_connections();
-        }
-
-        window.onresize = function(){
-            disconnect_line();
-            init_connections();
-        }
-
-    </script>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
 </head>
-
 <body>
-    <!-- NAVIGATION -->
-    <nav id="top-nav">
-        <span id="top-nav__title">
-            Renz Aguirre
-        </span>
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-trail"></div>
+    
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loading-content">
+            <div class="loading-text">
+                <span class="loading-prompt">root@beepboopbit:~$</span>
+                <span class="loading-command"></span>
+                <span class="loading-cursor">█</span>
+            </div>
+            <div class="loading-progress">
+                <div class="loading-bar"></div>
+            </div>
+        </div>
+        <div class="matrix-rain"></div>
+    </div>
 
-        <ul id="top-nav__links">
-            <li>
-                <a href="#my-works-link">Works</a>
-                <a href="#my-skills-link"> Skills</a>
-                <a href="#my-experiences-link"> Experience</a>
-                <a href="#my-education-link"> Education </a>
-                <a href="#my-contact-link"> Contact</a>
-            </li>
+    <!-- Scroll Progress Indicator -->
+    <div class="scroll-progress"></div>
+
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <div class="nav-brand">
+            <span class="nav-logo">&lt;/&gt;</span>
+            <span class="nav-name">Renz.exe</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#hero" data-text="home">home</a></li>
+            <li><a href="#about" data-text="about">about</a></li>
+            <li><a href="#skills" data-text="skills">skills</a></li>
+            <li><a href="#projects" data-text="projects">projects</a></li>
+            <li><a href="#experience" data-text="experience">experience</a></li>
+            <li><a href="#contact" data-text="contact">contact</a></li>
         </ul>
+        <div class="nav-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
     </nav>
 
-    <!-- Content -->
-    <section class="main-container">
-        <article class="main-title title">
-            <svg class="big-svg svg"></svg>
-            <span>
-                Renz <br> Aguirre
-            </span>
-        </article>
-        <article class="main-subtitle subtitle">
-            <span>
-                Computer Science Student -- Specializing in Data Science -- Mastering in Artificial Intelligence
-            </span>
-        </article>
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+        <div class="hero-bg">
+            <div class="particles" id="particles"></div>
+            <div class="grid-overlay"></div>
+        </div>
+        <div class="hero-content">
+            <div class="glitch-text">
+                <h1 class="hero-title">
+                    <span class="glitch" data-text="Renz Aguirre">Renz Aguirre</span>
+                </h1>
+            </div>
+            <div class="typewriter-container">
+                <span class="typewriter-prefix">I am a </span>
+                <span class="typewriter" id="typewriter"></span>
+                <span class="typewriter-cursor">█</span>
+            </div>
+            <p class="hero-subtitle">Computer Science Student • Data Science Specialist • AI Enthusiast</p>
+            <div class="hero-cta">
+                <a href="#projects" class="cta-button">
+                    <span>View My Work</span>
+                    <div class="cta-effects"></div>
+                </a>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="scroll-mouse">
+                <div class="scroll-wheel"></div>
+            </div>
+            <span>Scroll to explore</span>
+        </div>
     </section>
 
-    <section class="main-container" id="my-works-link">
-        <article class="main-title title">
-            <svg class="big-svg svg"></svg>
-            <span>Works</span>
-        </article>
+    <!-- About Section -->
+    <section id="about" class="section about">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="section-number">01.</span>
+                About Me
+            </h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-title">about_me.py</span>
+                            <div class="code-controls">
+                                <span class="control close"></span>
+                                <span class="control minimize"></span>
+                                <span class="control maximize"></span>
+                            </div>
+                        </div>
+                        <div class="code-content">
+                            <pre><code class="code-animation">
+<span class="code-keyword">class</span> <span class="code-class">Developer</span>:
+    <span class="code-keyword">def</span> <span class="code-function">__init__</span>(<span class="code-self">self</span>):
+        <span class="code-self">self</span>.name = <span class="code-string">"Renz Aguirre"</span>
+        <span class="code-self">self</span>.role = <span class="code-string">"Full-Stack Developer"</span>
+        <span class="code-self">self</span>.location = <span class="code-string">"Philippines"</span>
+        <span class="code-self">self</span>.education = {
+            <span class="code-string">"university"</span>: <span class="code-string">"Mapua University"</span>,
+            <span class="code-string">"degree"</span>: <span class="code-string">"BS Computer Science"</span>,
+            <span class="code-string">"specialization"</span>: <span class="code-string">"Data Science"</span>,
+            <span class="code-string">"masters"</span>: <span class="code-string">"MS Artificial Intelligence"</span>
+        }
 
-
-        <section class="sub-container">
-            <article class="sub-title">
-                <svg class="small-svg svg"></svg>
-                <span>Website Development</span>
-            </article>
-
-            <section class="data-container">
-                <article class="data-title">
-                    <svg class="tiny-svg svg"></svg>
-                    <span>
-                        IAMMAD Website
-                    </span>
-                </article>
-                <article class="data-subtitle">
-                    <span>
-                        Created a website for the non-profit organization
-                        "I AM MAKING A DIFFERENCE"
-                    </span>
-                </article>
-            </section>
-
-            <section class="data-container">
-                <article class="data-title">
-                    <svg class="tiny-svg svg"></svg>
-                    <span>
-                        Pearl MPC
-                    </span>
-                </article>
-                <article class="data-subtitle">
-                    <span>
-                        Created a Fullstack website for the Cooperative Organization Pearl MPC as a project for one of
-                        the course in Mapua University.
-                    </span>
-                </article>
-            </section>
-
-            <section class="data-container">
-                <article class="data-title">
-                    <svg class="tiny-svg svg"></svg>
-                    <span>
-                        Sweet Solution Website
-                    </span>
-                </article>
-                <article class="data-subtitle">
-                    <span>
-                        Created a Fullstack website for the Cooperative Organization Pearl MPC as a project for one of
-                        the course in Mapua University.
-                    </span>
-                </article>
-            </section>
-
-            <section class="data-container">
-                <article class="data-title">
-                    <svg class="tiny-svg svg"></svg>
-                    <span>
-                        Other Website Commissions
-                    </span>
-                </article>
-                <article class="data-subtitle">
-                    <span>
-                        Created some frontend-only and fullstack commissions websites
-                    </span>
-                </article>
-            </section>
-        </section>
-
-        <section class="sub-container">
-            <article class="sub-title">
-                <svg class="small-svg svg"></svg>
-                <span>Software Development</span>
-            </article>
-
-            <section class="data-container">
-                <article class="data-title">
-                    <svg class="tiny-svg svg"></svg>
-                    <span>
-                        Laboratory Environment
-                    </span>
-                </article>
-                <article class="data-subtitle">
-                    <span>
-                        A Digital Twin project that lets a user simulate a laboratory environment for observing
-                        reactions.
-                    </span>
-                </article>
-            </section>
-
-            <section class="data-container">
-                <article class="data-title">
-                    <svg class="tiny-svg svg"></svg>
-                    <span>
-                        Condo Management System
-                    </span>
-                </article>
-                <article class="data-subtitle">
-                    <span>
-                        A CRUD Project to create a condo management system using Java.
-                    </span>
-                </article>
-            </section>
-
-            <section class="data-container">
-                <article class="data-title">
-                    <svg class="tiny-svg svg"></svg>
-                    <span>
-                        Ticket System
-                    </span>
-                </article>
-                <article class="data-subtitle">
-                    <span>
-                        A CRUD Project for ticketing system
-                    </span>
-                </article>
-            </section>
-
-            <section class="data-container">
-                <article class="data-title">
-                    <svg class="tiny-svg svg"></svg>
-                    <span>
-                        Memory Viewer
-                    </span>
-                </article>
-                <article class="data-subtitle">
-                    <span>
-                        A Memory Viewer Simulator with different scheduling algorithms.
-                    </span>
-                </article>
-            </section>
-        </section>
-
-
-        <section class="sub-container">
-            <article class="sub-title">
-                <svg class="small-svg svg"></svg>
-                <span>Game Development</span>
-            </article>
-
-            <section class="data-container">
-                <article class="data-title">
-                    <svg class="tiny-svg svg"></svg>
-                    <span>
-                        The Night Of Juan
-                    </span>
-                </article>
-                <article class="data-subtitle">
-                    <span>
-                        Created a 2D RPG Game for a bootcamp.
-                    </span>
-                </article>
-            </section>
-
-            <section class="data-container">
-                <article class="data-title">
-                    <svg class="tiny-svg svg"></svg>
-                    <span>
-                        Whack-A-Melon
-                    </span>
-                </article>
-                <article class="data-subtitle">
-                    <span>
-                        A simple Whack-A-Mole game with a twist.
-                    </span>
-                </article>
-            </section>
-
-            <section class="data-container">
-                <article class="data-title">
-                    <svg class="tiny-svg svg"></svg>
-                    <span>
-                        Console Snake Game
-                    </span>
-                </article>
-                <article class="data-subtitle">
-                    <span>
-                        Testing Snake Game but in the console.
-                    </span>
-                </article>
-            </section>
-        </section>
-
-        <section class="sub-container">
-            <article class="sub-title">
-                <svg class="small-svg svg"></svg>
-                <span>Others</span>
-            </article>
-
-            <section class="data-container">
-                <article class="data-title">
-                    <svg class="tiny-svg svg"></svg>
-                    <span>
-                        HLint
-                    </span>
-                </article>
-                <article class="data-subtitle">
-                    <span>
-                        A Basic Interpreter that can do mathematical and conditional operations
-                    </span>
-                </article>
-            </section>
-
-            <section class="data-container">
-                <article class="data-title">
-                    <svg class="tiny-svg svg"></svg>
-                    <span>
-                        Assembly Calculator
-                    </span>
-                </article>
-                <article class="data-subtitle">
-                    <span>
-                        An 8-bit Calculator with some UI made in Assembly Language.
-                    </span>
-                </article>
-            </section>
-        </section>
+    <span class="code-keyword">def</span> <span class="code-function">get_passion</span>(<span class="code-self">self</span>):
+        <span class="code-keyword">return</span> [
+            <span class="code-string">"Building innovative web applications"</span>,
+            <span class="code-string">"Exploring AI and machine learning"</span>,
+            <span class="code-string">"Creating seamless user experiences"</span>,
+            <span class="code-string">"Solving complex problems with code"</span>
+        ]
+                            </code></pre>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-visual">
+                    <div class="timeline-container">
+                        <div class="timeline-line"></div>
+                        <div class="timeline-item" data-year="2021">
+                            <div class="timeline-marker"></div>
+                            <div class="timeline-content">
+                                <h3>Started University</h3>
+                                <p>Began Computer Science journey at Mapua University</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item" data-year="2022">
+                            <div class="timeline-marker"></div>
+                            <div class="timeline-content">
+                                <h3>First Projects</h3>
+                                <p>Built first web applications and games</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item" data-year="2023">
+                            <div class="timeline-marker"></div>
+                            <div class="timeline-content">
+                                <h3>Leadership Role</h3>
+                                <p>Became President of Information System Next-Gen</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item" data-year="2024">
+                            <div class="timeline-marker"></div>
+                            <div class="timeline-content">
+                                <h3>Freelance Work</h3>
+                                <p>Started professional development projects</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item" data-year="2025">
+                            <div class="timeline-marker active"></div>
+                            <div class="timeline-content">
+                                <h3>Graduation</h3>
+                                <p>Completing dual degree program</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
-
-    <section class="main-container" id="my-skills-link">
-        <article class="main-title title">
-            <svg class="big-svg svg"></svg>
-            <span>Skills</span>
-        </article>
-        <section class="sub-container">
-            <article class="sub-title">
-                <svg class="small-svg svg"></svg>
-                <span>Languages</span>
-            </article>
-
-            <section class="data-container">
-                <table class="data-table">
-                    <tr>
-                        <th> Beginner </th>
-                        <th> Intermediate </th>
-                        <th> Advanced </th>
-                    </tr>
-                    <tr>
-                        <td>C</td>
-                        <td>C++</td>
-                        <td>HTML</td>
-                    </tr>
-                    <tr>
-                        <td>RUST</td>
-                        <td>Python</td>
-                        <td>CSS</td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>Typescript</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>Javascript</td>
-                        <td></td>
-                    </tr>
-
-                </table>
-            </section>
-        </section>
-        <section class="sub-container">
-            <article class="sub-title">
-                <svg class="small-svg svg"></svg>
-                <span>Tools and Frameworks</span>
-            </article>
-
-            <section class="data-container">
-                <table class="data-table">
-                    <tr>
-                        <th> Beginner </th>
-                        <th> Intermediate </th>
-                        <th> Advanced </th>
-                    </tr>
-                    <tr>
-                        <td>React</td>
-                        <td>Angular</td>
-                        <td>Neovim</td>
-                    </tr>
-                    <tr>
-                        <td>Unity</td>
-                        <td>Linux CLI</td>
-                        <td>VS Code</td>
-                    </tr>
-                    <tr>
-                        <td>Tensortflow</td>
-                        <td>Git</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>Keras</td>
-                        <td>MySQL</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>Pytorch</td>
-                        <td>PostgreSQL</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>Docker</td>
-                        <td>MongoDB</td>
-                        <td></td>
-                    </tr>
-
-                </table>
-            </section>
-        </section>
-        <section class="sub-container">
-            <article class="sub-title">
-                <svg class="small-svg svg"></svg>
-                <span>Soft Skills</span>
-            </article>
-
-            <section class="data-container">
-                <table class="data-table">
-                    <tr>
-                        <th> Beginner </th>
-                        <th> Intermediate </th>
-                        <th> Advanced </th>
-                    </tr>
-                    <tr>
-                        <td>Emotional</br>Intelligence</td>
-                        <td>Presentation</td>
-                        <td>Reliability</td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>Communication</td>
-                        <td>Research</td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>Management</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>Leadership</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>Analysis</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>Confidence</td>
-                        <td></td>
-                    </tr>
-
-                </table>
-            </section>
-        </section>
-        <section class="sub-container">
-            <article class="sub-title">
-                <svg class="small-svg svg"></svg>
-                <span>Others</span>
-            </article>
-
-            <section class="data-container">
-                <table class="data-table">
-                    <tr>
-                        <th> Beginner </th>
-                        <th> Intermediate </th>
-                        <th> Advanced </th>
-                    </tr>
-                    <tr>
-                        <td>REST</td>
-                        <td>Data Structure</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>System Design</td>
-                        <td>AI Architecture</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>Algorithms</td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>SDLC</td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                </table>
-            </section>
-        </section>
+    <!-- Skills Section -->
+    <section id="skills" class="section skills">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="section-number">02.</span>
+                Skills & Expertise
+            </h2>
+            <div class="skills-content">
+                <div class="skill-categories">
+                    <div class="skill-category">
+                        <h3>Languages</h3>
+                        <div class="skill-grid">
+                            <div class="skill-item" data-level="90">
+                                <span>HTML/CSS</span>
+                                <div class="skill-bar">
+                                    <div class="skill-fill"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item" data-level="85">
+                                <span>JavaScript</span>
+                                <div class="skill-bar">
+                                    <div class="skill-fill"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item" data-level="80">
+                                <span>TypeScript</span>
+                                <div class="skill-bar">
+                                    <div class="skill-fill"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item" data-level="75">
+                                <span>Python</span>
+                                <div class="skill-bar">
+                                    <div class="skill-fill"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item" data-level="70">
+                                <span>C++</span>
+                                <div class="skill-bar">
+                                    <div class="skill-fill"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item" data-level="60">
+                                <span>C</span>
+                                <div class="skill-bar">
+                                    <div class="skill-fill"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item" data-level="40">
+                                <span>Rust</span>
+                                <div class="skill-bar">
+                                    <div class="skill-fill"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <h3>Frameworks & Tools</h3>
+                        <div class="skill-grid">
+                            <div class="skill-item" data-level="80">
+                                <span>Angular</span>
+                                <div class="skill-bar">
+                                    <div class="skill-fill"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item" data-level="70">
+                                <span>React</span>
+                                <div class="skill-bar">
+                                    <div class="skill-fill"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item" data-level="85">
+                                <span>Git</span>
+                                <div class="skill-bar">
+                                    <div class="skill-fill"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item" data-level="75">
+                                <span>MySQL</span>
+                                <div class="skill-bar">
+                                    <div class="skill-fill"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item" data-level="70">
+                                <span>PostgreSQL</span>
+                                <div class="skill-bar">
+                                    <div class="skill-fill"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item" data-level="70">
+                                <span>MongoDB</span>
+                                <div class="skill-bar">
+                                    <div class="skill-fill"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item" data-level="65">
+                                <span>Docker</span>
+                                <div class="skill-bar">
+                                    <div class="skill-fill"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skill-cloud">
+                    <div class="floating-skill" style="--delay: 0s">AI</div>
+                    <div class="floating-skill" style="--delay: 1s">Machine Learning</div>
+                    <div class="floating-skill" style="--delay: 2s">Web Development</div>
+                    <div class="floating-skill" style="--delay: 3s">Data Science</div>
+                    <div class="floating-skill" style="--delay: 4s">Game Development</div>
+                    <div class="floating-skill" style="--delay: 5s">Full-Stack</div>
+                    <div class="floating-skill" style="--delay: 6s">Leadership</div>
+                    <div class="floating-skill" style="--delay: 7s">Problem Solving</div>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <section class="main-container" id="my-experiences-link">
-        <article class="main-title title">
-            <svg class="big-svg svg"></svg>
-            <span>Experiences</span>
-        </article>
-        <section class="sub-container">
-            <article class="sub-title">
-                <svg class="small-svg svg"></svg>
-                <span>Freelancing</span>
-            </article>
-            <article class="sub-subtitle">
-                <span>
-                    Created software and applications using different tools and languages such as HTML, CSS, Javascript,
-                    Python, and Java; accepted some data analysis commissions; and has experience creating technical and
-                    product requirement document for software
-                </span>
-            </article>
-        </section>
-        <section class="sub-container">
-            <article class="sub-title">
-                <svg class="small-svg svg"></svg>
-                <span>Information System Next-Gen</span>
-            </article>
-            <article class="sub-subtitle">
-                <span>
-                    Leads the Information System Next-Gen student organization. Applied leadership, management,
-                    communication, documentation, etc. for different
-                </span>
-            </article>
+    <!-- Projects Section -->
+    <section id="projects" class="section projects">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="section-number">03.</span>
+                Featured Projects
+            </h2>
+            <div class="projects-grid">
+                <div class="project-card" data-category="web">
+                    <div class="project-image">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="#" class="project-link">
+                                    <span>View Code</span>
+                                </a>
+                                <a href="#" class="project-link">
+                                    <span>Live Demo</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="project-placeholder">
+                            <span>IAMMAD Website</span>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>IAMMAD Website</h3>
+                        <p>Non-profit organization website with modern design and responsive features.</p>
+                        <div class="project-tech">
+                            <span>HTML</span>
+                            <span>CSS</span>
+                            <span>JavaScript</span>
+                        </div>
+                    </div>
+                </div>
 
-            <section class="data-container">
-                <article class="data-title">
-                    <svg class="tiny-svg svg"></svg>
-                    <span>
-                        Chairperson of the Board
-                    </span>
-                </article>
-                <article class="data-subtitle">
-                    <span>
-                        Leads the Board Members to develop strategies and future plans for the organization.<br />
-                        • Advices executives for their plans and goals<br />
-                        • Sets goals and makes decisions for the organization<br />
-                        • Support the organization through finding possible opportunities
-                    </span>
-                </article>
-                <article class="data-title">
-                    <svg class="tiny-svg svg"></svg>
-                    <span>
-                        President
-                    </span>
-                </article>
-                <article class="data-subtitle">
-                    <span>
-                        Makes decisions, plans events, and engages the community of the organization. As a previous
-                        creatives committee of this organization, I was able to experience problems that made
-                        managing the organization hard but with a direction. This then enabled me to:<br />
-                        • Make the organization as the top 1 organization in Mapua University<br />
-                        • Enabled the communication between the organization and different companies such as PwC<br />
-                        Manila and Capgemini
-                        • Rebuilt the Information System Next Generation Organization from three to 70+ Members<br />
-                        • Connect with Local Organizations for events and partnerships.
-                    </span>
-                </article>
-                <article class="data-title">
-                    <svg class="tiny-svg svg"></svg>
-                    <span>
-                        Creatives Committee
-                    </span>
-                </article>
-                <article class="data-subtitle">
-                    <span>
-                        Part of improving my communication and creative skills. I joined the Information System
-                        Next-Gen Organization and became a creative committee. While there's not a lot of
-                        substantial achievement that we've done, I was able to learn Communication and Leadership
-                        skills by carefully laying out my plans and ideas to the creative head and helping with the
-                        management.
-                    </span>
-                </article>
-            </section>
-            <section class="sub-container">
-                <article class="sub-title">
-                    <svg class="small-svg svg"></svg>
-                    <span>College Tutor</span>
-                </article>
-                <article class="sub-subtitle">
-                    <span>
-                        Teach college students full-stack development focusing on HTML, CSS, JavaScript, PHP,
-                        MongoDB,
-                        MySQL, Angular, and React. Also taught some information management concepts particularly
-                        focusing on
-                        databases.
-                    </span>
-                </article>
-            </section>
-            <section class="sub-container">
-                <article class="sub-title">
-                    <svg class="small-svg svg"></svg>
-                    <span>Logistics Committee</span>
-                </article>
-                <article class="sub-subtitle">
-                    <span>
-                        Being a part of the Student Council in the School of Information Technology provided me with
-                        soft skills that I practice even to this day. As part of the logistics committee, I was
-                        tasked to facilitate events in different ways such as engaging the people, managing
-                        requirements, and ensuring that everything was in place. I also was introduced to the
-                        leadership summit as part of my performance.<br /><br />
+                <div class="project-card" data-category="web">
+                    <div class="project-image">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="#" class="project-link">
+                                    <span>View Code</span>
+                                </a>
+                                <a href="#" class="project-link">
+                                    <span>Live Demo</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="project-placeholder">
+                            <span>Pearl MPC</span>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Pearl MPC Platform</h3>
+                        <p>Full-stack cooperative management system with comprehensive features.</p>
+                        <div class="project-tech">
+                            <span>Angular</span>
+                            <span>Node.js</span>
+                            <span>MySQL</span>
+                        </div>
+                    </div>
+                </div>
 
-                        Key Skills Applied:<br />
-                        • Communication<br />
-                        • Management<br />
-                        • Leadership
-                    </span>
-                </article>
-            </section>
-        </section>
+                <div class="project-card" data-category="software">
+                    <div class="project-image">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="#" class="project-link">
+                                    <span>View Code</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="project-placeholder">
+                            <span>Laboratory Environment</span>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Digital Lab Simulator</h3>
+                        <p>Digital twin project for simulating laboratory reactions and experiments.</p>
+                        <div class="project-tech">
+                            <span>Unity</span>
+                            <span>C#</span>
+                            <span>Physics Engine</span>
+                        </div>
+                    </div>
+                </div>
 
-        <section class="main-container" id="my-education-link">
-            <article class="main-title title">
-                <svg class="big-svg svg"></svg>
-                <span>
-                    Education
-                </span>
-            </article>
+                <div class="project-card" data-category="game">
+                    <div class="project-image">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="#" class="project-link">
+                                    <span>Play Game</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="project-placeholder">
+                            <span>The Night Of Juan</span>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>The Night of Juan</h3>
+                        <p>2D RPG adventure game created for bootcamp project with engaging storyline.</p>
+                        <div class="project-tech">
+                            <span>Unity</span>
+                            <span>C#</span>
+                            <span>2D Graphics</span>
+                        </div>
+                    </div>
+                </div>
 
-            <section class="sub-container">
-                <article class="sub-title">
-                    <svg class="small-svg svg"></svg>
-                    <span>Mapua University</span>
-                </article>
+                <div class="project-card" data-category="software">
+                    <div class="project-image">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="#" class="project-link">
+                                    <span>View Code</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="project-placeholder">
+                            <span>Memory Viewer</span>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Memory Viewer Simulator</h3>
+                        <p>Advanced memory management simulator with multiple scheduling algorithms.</p>
+                        <div class="project-tech">
+                            <span>Java</span>
+                            <span>Algorithms</span>
+                            <span>System Design</span>
+                        </div>
+                    </div>
+                </div>
 
-                <section class="data-container">
-                    <article class="data-title">
-                        <svg class="tiny-svg svg"></svg>
-                        <span>
-                            Bachelor of Science in Computer Science -- Specializing in Data Science <br />
-                            (2021 - 2025)
-                        </span>
-                    </article>
-                    <article class="data-title">
-                        <svg class="tiny-svg svg"></svg>
-                        <span>
-                            Master of Science in Artificial Intelligence <br />
-                            (2021 - 2025)
-                        </span>
-                    </article>
-                </section>
-            </section>
-        </section>
+                <div class="project-card" data-category="other">
+                    <div class="project-image">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="#" class="project-link">
+                                    <span>View Code</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="project-placeholder">
+                            <span>HLint Interpreter</span>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>HLint Interpreter</h3>
+                        <p>Custom programming language interpreter with mathematical and conditional operations.</p>
+                        <div class="project-tech">
+                            <span>Haskell</span>
+                            <span>Parsing</span>
+                            <span>Compiler Design</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        <section class="main-container" id="my-contact-link">
-            <article class="main-title title">
-                <svg class="big-svg svg"></svg>
-                <span>
-                    Contacts
-                </span>
-            </article>
-            <article class="main-subtitle subtitle">
-                <ul id="main__contacts">
-                    <li>
-                        <a href="mailto:renzaguirre@aixand.com"><img src="assets/email.png" alt=""></a>
-                        <a href="mailto:renzaguirre@aixand.com">renzaguirre@aixand.net</a>
-                    </li>
-                    <li>
-                        <a href="https://www.linkedin.com/in/beepboopbit/"><img src="assets/linkedin.png" alt=""></a>
-                        <a href="https://www.linkedin.com/in/beepboopbit/"> /in/beepboopbit/ </a>
-                    </li>
-                    <li>
-                        <a href="https://github.com/BeepBoopBit"><img src="assets/github-white.png" alt=""></a>
-                        <a href="https://github.com/BeepBoopBit"> /BeepBoopBit </a>
-                    </li>
-                </ul>
-            </article>
-        </section>
+    <!-- Experience Section -->
+    <section id="experience" class="section experience">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="section-number">04.</span>
+                Experience
+            </h2>
+            <div class="experience-timeline">
+                <div class="experience-item">
+                    <div class="experience-date">2021 - Present</div>
+                    <div class="experience-content">
+                        <h3>Freelance Developer</h3>
+                        <p>Creating software and applications using various technologies including HTML, CSS, JavaScript, Python, and Java. Specializing in web development and data analysis projects.</p>
+                        <div class="experience-highlights">
+                            <span>Web Development</span>
+                            <span>Data Analysis</span>
+                            <span>Technical Documentation</span>
+                        </div>
+                    </div>
+                </div>
 
+                <div class="experience-item">
+                    <div class="experience-date">2023 - 2024</div>
+                    <div class="experience-content">
+                        <h3>Chairperson of the Board - Information System Next-Gen</h3>
+                        <p>Leading strategic development and decision-making for the organization. Achieved #1 organization status at Mapua University and grew membership from 3 to 70+ members.</p>
+                        <div class="experience-highlights">
+                            <span>Strategic Planning</span>
+                            <span>Team Leadership</span>
+                            <span>Partnership Development</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-date">2022 - 2023</div>
+                    <div class="experience-content">
+                        <h3>President - Information System Next-Gen</h3>
+                        <p>Managed organizational events, community engagement, and built partnerships with companies like PwC Manila and Capgemini. Led the organization to top university ranking.</p>
+                        <div class="experience-highlights">
+                            <span>Event Management</span>
+                            <span>Corporate Relations</span>
+                            <span>Community Building</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-date">2021 - 2023</div>
+                    <div class="experience-content">
+                        <h3>College Tutor</h3>
+                        <p>Teaching full-stack development to college students, focusing on modern web technologies and database management concepts.</p>
+                        <div class="experience-highlights">
+                            <span>Teaching</span>
+                            <span>Mentoring</span>
+                            <span>Curriculum Development</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section contact">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="section-number">05.</span>
+                Get In Touch
+            </h2>
+            <div class="contact-content">
+                <div class="contact-text">
+                    <h3>Let's Build Something Amazing Together</h3>
+                    <p>I'm always interested in new opportunities, collaborations, and innovative projects. Whether you have a question or just want to say hi, I'll do my best to get back to you!</p>
+                </div>
+                <div class="contact-form-container">
+                    <form class="contact-form" id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required>
+                            <span class="form-highlight"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                            <span class="form-highlight"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" required>
+                            <span class="form-highlight"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                            <span class="form-highlight"></span>
+                        </div>
+                        <button type="submit" class="submit-btn">
+                            <span>Send Message</span>
+                            <div class="btn-effect"></div>
+                        </button>
+                    </form>
+                </div>
+                <div class="contact-links">
+                    <a href="mailto:renzaguirre@aixand.net" class="contact-link">
+                        <span class="contact-icon">✉</span>
+                        <span>renzaguirre@aixand.net</span>
+                    </a>
+                    <a href="https://www.linkedin.com/in/beepboopbit/" class="contact-link" target="_blank">
+                        <span class="contact-icon">💼</span>
+                        <span>LinkedIn</span>
+                    </a>
+                    <a href="https://github.com/BeepBoopBit" class="contact-link" target="_blank">
+                        <span class="contact-icon">⚡</span>
+                        <span>GitHub</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2025 Renz Aguirre. Crafted with passion and code.</p>
+                <div class="footer-tech">
+                    <span>Built with pure HTML, CSS & JavaScript</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
-
 </html>

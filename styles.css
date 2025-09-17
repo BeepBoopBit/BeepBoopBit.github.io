@@ -1830,6 +1830,7 @@ body.zoom-in {
     max-width: 350px;
     width: 100%;
     overflow: hidden;
+    margin: 0 auto;
 }
 
 .holo-frame {
@@ -2557,7 +2558,7 @@ body.zoom-in {
 }
 
 .stat-label {
-    font-size: 1.2rem;
+    font-size: 0.6rem;
     color: var(--text-primary);
     font-weight: bold;
     margin-bottom: 0.25rem;

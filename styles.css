@@ -868,202 +868,573 @@ body.zoom-in {
 }
 
 .languages-layout {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
+    display: flex;
+    justify-content: center;
     align-items: start;
-    max-width: 1200px;
+    gap: 3rem;
+    max-width: 1400px;
     margin: 0 auto;
     padding: 0 2rem;
+    position: relative;
+    z-index: 3;
 }
 
-.dna-container {
+.neural-network-hub {
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 600px;
     perspective: 1000px;
+    position: relative;
 }
 
-.dna-helix {
+.neural-core {
     position: relative;
-    width: 400px;
+    width: 500px;
     height: 500px;
     transform-style: preserve-3d;
 }
 
-.dna-strand {
+/* Central Processing Core */
+.processing-core {
     position: absolute;
-    width: 300px;
-    height: 300px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+}
+
+.core-rings {
+    position: relative;
+    width: 100px;
+    height: 100px;
+}
+
+.core-ring {
+    position: absolute;
     border-radius: 50%;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    border: 2px solid;
 }
 
-.strand-1 {
-    border: 2px dashed var(--primary-neon);
-    opacity: 0.2;
-    animation: strandPulse1 8s ease-in-out infinite;
+.core-ring.inner {
+    width: 60px;
+    height: 60px;
+    border-color: var(--primary-neon);
+    animation: coreRingPulse 3s ease-in-out infinite;
 }
 
-.strand-2 {
-    border: 2px dashed var(--accent-neon);
-    opacity: 0.2;
-    transform: translate(-50%, -50%) rotateY(60deg);
-    animation: strandPulse2 8s ease-in-out infinite 4s;
+.core-ring.middle {
+    width: 80px;
+    height: 80px;
+    border-color: var(--accent-neon);
+    opacity: 0.7;
+    animation: coreRingPulse 4s ease-in-out infinite 1s;
 }
 
-.orbit-ring {
-    position: absolute;
+.core-ring.outer {
     width: 100px;
     height: 100px;
+    border-color: var(--secondary-neon);
+    opacity: 0.5;
+    animation: coreRingPulse 5s ease-in-out infinite 2s;
+}
+
+.core-center {
+    position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    animation: slowOrbit 40s linear infinite;
-}
-
-.ring-1 { 
-    width: 120px; 
-    height: 120px; 
-    animation-delay: var(--orbit-delay);
-    z-index: 7;
-}
-.ring-2 { 
-    width: 160px; 
-    height: 160px; 
-    animation-delay: var(--orbit-delay);
-    z-index: 6;
-}
-.ring-3 { 
-    width: 200px; 
-    height: 200px; 
-    animation-delay: var(--orbit-delay);
-    z-index: 5;
-}
-.ring-4 { 
-    width: 240px; 
-    height: 240px; 
-    animation-delay: var(--orbit-delay);
-    z-index: 4;
-}
-.ring-5 { 
-    width: 280px; 
-    height: 280px; 
-    animation-delay: var(--orbit-delay);
-    z-index: 3;
-}
-.ring-6 { 
-    width: 320px; 
-    height: 320px; 
-    animation-delay: var(--orbit-delay);
+    text-align: center;
     z-index: 2;
 }
-.ring-7 { 
-    width: 360px; 
-    height: 360px; 
-    animation-delay: var(--orbit-delay);
+
+.brain-icon {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    animation: brainPulse 2s ease-in-out infinite;
+}
+
+.core-label {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+}
+
+.core-title {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: var(--primary-neon);
+    letter-spacing: 1px;
+}
+
+.core-subtitle {
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    color: var(--text-secondary);
+    letter-spacing: 2px;
+}
+
+/* Neural Network Background */
+.neural-network-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.3;
+    overflow: hidden;
+}
+
+.neural-core-bg {
+    position: relative;
+    width: 1200px;
+    height: 1200px;
+    transform-style: preserve-3d;
+}
+
+/* Background Central Processing Core */
+.processing-core-bg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+}
+
+.core-rings-bg {
+    position: relative;
+    width: 120px; 
+    height: 120px; 
+}
+
+.core-ring-bg {
+    position: absolute;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 2px solid;
+}
+
+.core-ring-bg.inner {
+    width: 80px;
+    height: 80px;
+    border-color: var(--primary-neon);
+    animation: coreRingPulseBg 3s ease-in-out infinite;
+}
+
+.core-ring-bg.middle {
+    width: 100px;
+    height: 100px;
+    border-color: var(--accent-neon);
+    opacity: 0.7;
+    animation: coreRingPulseBg 4s ease-in-out infinite 1s;
+}
+
+.core-ring-bg.outer {
+    width: 120px;
+    height: 120px;
+    border-color: var(--secondary-neon);
+    opacity: 0.5;
+    animation: coreRingPulseBg 5s ease-in-out infinite 2s;
+}
+
+.core-center-bg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 2;
+}
+
+.brain-icon-bg {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    animation: brainPulseBg 2s ease-in-out infinite;
+    opacity: 0.8;
+}
+
+.core-label-bg {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+}
+
+.core-title-bg {
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    font-weight: bold;
+    color: var(--primary-neon);
+    letter-spacing: 1px;
+    opacity: 0.8;
+}
+
+.core-subtitle-bg {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    letter-spacing: 2px;
+    opacity: 0.6;
+}
+
+/* Neural Connections SVG */
+.neural-connections {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
     z-index: 1;
 }
 
-.language-molecule {
+/* Neural Pathways */
+.neural-pathway {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+}
+
+/* Background Neural Pathways with Orbital Movement */
+.neural-pathway-bg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+}
+
+/* Expert Level Neural Pathway - Innermost, Fastest (25s) */
+.expert-pathway-bg {
+    width: 300px;
+    height: 300px;
+    animation: orbitalRotation 25s linear infinite;
+    z-index: 4;
+    border: 1px solid rgba(0, 255, 136, 0.2);
+    box-shadow: 0 0 30px rgba(0, 255, 136, 0.1);
+}
+
+/* Advanced Level Neural Pathway - Second ring, Medium-Fast (35s) */
+.advanced-pathway-bg {
+    width: 480px;
+    height: 480px;
+    animation: orbitalRotation 35s linear infinite;
+    z-index: 3;
+    border: 1px solid rgba(0, 136, 255, 0.2);
+    box-shadow: 0 0 30px rgba(0, 136, 255, 0.1);
+}
+
+/* Intermediate Level Neural Pathway - Third ring, Medium (50s) */
+.intermediate-pathway-bg {
+    width: 660px;
+    height: 660px;
+    animation: orbitalRotation 50s linear infinite;
+    z-index: 2;
+    border: 1px solid rgba(255, 255, 0, 0.2);
+    box-shadow: 0 0 30px rgba(255, 255, 0, 0.1);
+}
+
+/* Beginner Level Neural Pathway - Outermost, Slowest (70s) */
+.beginner-pathway-bg {
+    width: 840px;
+    height: 840px;
+    animation: orbitalRotation 70s linear infinite;
+    z-index: 1;
+    border: 1px solid rgba(255, 0, 136, 0.2);
+    box-shadow: 0 0 30px rgba(255, 0, 136, 0.1);
+}
+
+/* Background Neural Nodes that move along orbits */
+.neural-node-bg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 60px;
+    height: 60px;
+    transform: 
+        translate(-50%, -50%)
+        rotate(var(--orbit-angle))
+        translateX(calc(var(--pathway-radius-bg, 150px)))
+        rotate(calc(-1 * var(--orbit-angle)));
+    pointer-events: none;
+}
+
+.node-core-bg {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, currentColor 0%, var(--bg-darker) 40%, transparent 70%);
+    border: 2px solid currentColor;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    opacity: 0.8;
+}
+
+.node-symbol-bg {
+    font-family: var(--font-mono);
+    font-weight: bold;
+    font-size: 0.8rem;
+    color: var(--text-primary);
+    text-shadow: 0 0 8px currentColor;
+    z-index: 2;
+}
+
+.neural-activity-bg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    z-index: 1;
+}
+
+.synapse-bg {
+    width: 4px;
+    height: 4px;
+    background: currentColor;
+    border-radius: 50%;
+    opacity: 0.4;
+    animation: synapseIdleBg 3s ease-in-out infinite;
+}
+
+.synapse-bg.active {
+    opacity: 0.8;
+    animation: synapseActiveBg 1.5s ease-in-out infinite;
+    box-shadow: 0 0 6px currentColor;
+}
+
+.activation-pulse-bg {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    width: 12px;
+    height: 12px;
+    background: currentColor;
+    border-radius: 50%;
+    animation: activationPulseBg 2s ease-in-out infinite;
+}
+
+/* Set pathway radius for each skill level */
+.expert-pathway-bg .neural-node-bg {
+    --pathway-radius-bg: 150px;
+}
+
+.advanced-pathway-bg .neural-node-bg {
+    --pathway-radius-bg: 240px;
+}
+
+.intermediate-pathway-bg .neural-node-bg {
+    --pathway-radius-bg: 330px;
+}
+
+.beginner-pathway-bg .neural-node-bg {
+    --pathway-radius-bg: 420px;
+}
+
+/* Background Neural Node Colors based on skill level */
+.neural-node-bg.expert {
+    color: var(--primary-neon);
+}
+
+.neural-node-bg.advanced {
+    color: var(--accent-neon);
+}
+
+.neural-node-bg.intermediate {
+    color: var(--warning-neon);
+}
+
+.neural-node-bg.beginner {
+    color: var(--secondary-neon);
+}
+
+/* Expert Level Neural Pathway - Innermost, Fastest (25s) */
+.expert-pathway {
+    width: 200px;
+    height: 200px;
+    animation: neuralPulse 25s linear infinite;
+    z-index: 4;
+    border: 1px solid rgba(0, 255, 136, 0.3);
+    box-shadow: 0 0 20px rgba(0, 255, 136, 0.1);
+}
+
+/* Advanced Level Neural Pathway - Second ring, Medium-Fast (35s) */
+.advanced-pathway {
+    width: 320px; 
+    height: 320px; 
+    animation: neuralPulse 35s linear infinite;
+    z-index: 3;
+    border: 1px solid rgba(0, 136, 255, 0.3);
+    box-shadow: 0 0 20px rgba(0, 136, 255, 0.1);
+}
+
+/* Intermediate Level Neural Pathway - Third ring, Medium (50s) */
+.intermediate-pathway {
+    width: 440px;
+    height: 440px;
+    animation: neuralPulse 50s linear infinite;
+    z-index: 2;
+    border: 1px solid rgba(255, 255, 0, 0.3);
+    box-shadow: 0 0 20px rgba(255, 255, 0, 0.1);
+}
+
+/* Beginner Level Neural Pathway - Outermost, Slowest (70s) */
+.beginner-pathway {
+    width: 560px;
+    height: 560px;
+    animation: neuralPulse 70s linear infinite;
+    z-index: 1;
+    border: 1px solid rgba(255, 0, 136, 0.3);
+    box-shadow: 0 0 20px rgba(255, 0, 136, 0.1);
+}
+
+.neural-node {
     position: absolute;
     display: flex;
     align-items: center;
     gap: 0.75rem;
     padding: 0.75rem 1rem;
-    background: rgba(10, 10, 10, 0.9);
-    border: 1px solid;
-    border-radius: 12px;
-    backdrop-filter: blur(10px);
+    background: rgba(5, 5, 5, 0.95);
+    border: 2px solid;
+    border-radius: 15px;
+    backdrop-filter: blur(15px);
     transition: all var(--transition-normal);
     cursor: pointer;
-    top: -20px;
-    left: -50px;
     width: 140px;
-    transform: rotate(calc(-1 * (var(--orbit-delay) / 40s) * 360deg));
+    /* Position nodes around the neural pathway circumference */
+    top: 50%;
+    left: 50%;
+    transform: 
+        translate(-50%, -50%)
+        rotate(var(--position-angle))
+        translateX(calc(var(--pathway-radius, 100px)))
+        rotate(calc(-1 * var(--position-angle)));
 }
 
-.language-molecule.expert {
+/* Set pathway radius for each skill level */
+.expert-pathway .neural-node {
+    --pathway-radius: 100px;
+}
+
+.advanced-pathway .neural-node {
+    --pathway-radius: 160px;
+}
+
+.intermediate-pathway .neural-node {
+    --pathway-radius: 220px;
+}
+
+.beginner-pathway .neural-node {
+    --pathway-radius: 280px;
+}
+
+.neural-node.expert {
     border-color: var(--primary-neon);
-    box-shadow: 0 0 15px rgba(0, 255, 136, 0.3);
+    box-shadow: 0 0 20px rgba(0, 255, 136, 0.4);
+    background: radial-gradient(circle, rgba(0, 255, 136, 0.1) 0%, rgba(5, 5, 5, 0.95) 70%);
 }
 
-.language-molecule.advanced {
+.neural-node.advanced {
     border-color: var(--accent-neon);
-    box-shadow: 0 0 15px rgba(0, 136, 255, 0.3);
+    box-shadow: 0 0 20px rgba(0, 136, 255, 0.4);
+    background: radial-gradient(circle, rgba(0, 136, 255, 0.1) 0%, rgba(5, 5, 5, 0.95) 70%);
 }
 
-.language-molecule.intermediate {
+.neural-node.intermediate {
     border-color: var(--warning-neon);
-    box-shadow: 0 0 15px rgba(255, 255, 0, 0.3);
+    box-shadow: 0 0 20px rgba(255, 255, 0, 0.4);
+    background: radial-gradient(circle, rgba(255, 255, 0, 0.1) 0%, rgba(5, 5, 5, 0.95) 70%);
 }
 
-.language-molecule.beginner {
+.neural-node.beginner {
     border-color: var(--secondary-neon);
-    box-shadow: 0 0 15px rgba(255, 0, 136, 0.3);
+    box-shadow: 0 0 20px rgba(255, 0, 136, 0.4);
+    background: radial-gradient(circle, rgba(255, 0, 136, 0.1) 0%, rgba(5, 5, 5, 0.95) 70%);
 }
 
-.language-molecule:hover {
-    transform: rotate(calc(-1 * (var(--orbit-delay) / 40s) * 360deg)) scale(1.1);
+.neural-node:hover {
+    transform: 
+        translate(-50%, -50%)
+        rotate(var(--position-angle))
+        translateX(calc(var(--pathway-radius, 100px)))
+        rotate(calc(-1 * var(--position-angle)))
+        scale(1.1);
     z-index: 10;
-    filter: brightness(1.2);
+    filter: brightness(1.3);
+    box-shadow: 0 0 30px currentColor;
 }
 
-.molecule-core {
+.node-core {
     position: relative;
-    width: 40px;
-    height: 40px;
-    background: var(--bg-darker);
+    width: 45px;
+    height: 45px;
+    background: radial-gradient(circle, currentColor 0%, var(--bg-darker) 30%, var(--bg-darker) 100%);
     border: 2px solid currentColor;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
+    overflow: hidden;
 }
 
-.molecule-symbol {
+.node-symbol {
     font-family: var(--font-mono);
     font-weight: bold;
     font-size: 0.7rem;
-    color: currentColor;
+    color: var(--text-primary);
+    text-shadow: 0 0 5px currentColor;
+    z-index: 2;
 }
 
-.electron-orbit {
+.neural-activity {
     position: absolute;
-    width: 60px;
-    height: 60px;
-    border: 1px solid currentColor;
-    border-radius: 50%;
-    opacity: 0.3;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    animation: electronSpin 3s linear infinite;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    z-index: 1;
 }
 
-.electron {
-    position: absolute;
-    width: 4px;
-    height: 4px;
+.synapse {
+    width: 3px;
+    height: 3px;
     background: currentColor;
     border-radius: 50%;
-    top: -2px;
-    left: 50%;
-    transform: translateX(-50%);
-    box-shadow: 0 0 6px currentColor;
+    opacity: 0.3;
+    animation: synapseIdle 3s ease-in-out infinite;
 }
 
-.molecule-data {
+.synapse.active {
+    opacity: 1;
+    animation: synapseActive 1.5s ease-in-out infinite;
+    box-shadow: 0 0 4px currentColor;
+}
+
+.node-data {
     display: flex;
     flex-direction: column;
     flex: 1;
 }
 
-.molecule-name {
+.node-name {
     font-family: var(--font-display);
     font-weight: bold;
     color: var(--text-primary);
@@ -1072,7 +1443,7 @@ body.zoom-in {
     white-space: nowrap;
 }
 
-.molecule-level {
+.node-level {
     font-family: var(--font-mono);
     font-size: 0.6rem;
     color: currentColor;
@@ -1080,18 +1451,232 @@ body.zoom-in {
     letter-spacing: 1px;
 }
 
-/* Skills Summary Panel */
-.skills-summary {
-    background: rgba(10, 10, 10, 0.8);
-    border: 1px solid var(--border-glow);
-    border-radius: 15px;
-    padding: 2rem;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 0 30px rgba(0, 255, 136, 0.1);
-    align-self: stretch;
+.activation-pulse {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    width: 10px;
+    height: 10px;
+    background: currentColor;
+    border-radius: 50%;
+    animation: activationPulse 2s ease-in-out infinite;
 }
 
-.summary-header {
+/* Neural Analysis Dashboard */
+.neural-analysis-dashboard {
+    background: rgba(5, 5, 5, 0.95);
+    border: 2px solid var(--primary-neon);
+    border-radius: 20px;
+    padding: 0;
+    backdrop-filter: blur(20px);
+    box-shadow: 
+        0 0 50px rgba(0, 255, 136, 0.3),
+        inset 0 0 50px rgba(0, 255, 136, 0.05);
+    position: relative;
+    overflow: hidden;
+    max-width: 600px;
+    width: 100%;
+}
+
+/* Dashboard Header */
+.dashboard-header {
+    position: relative;
+    padding: 0;
+    background: linear-gradient(135deg, rgba(0, 255, 136, 0.1) 0%, rgba(0, 136, 255, 0.05) 100%);
+}
+
+.hud-frame {
+    position: relative;
+    padding: 2rem;
+    border-bottom: 2px solid var(--border-glow);
+}
+
+.corner-indicators {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+}
+
+.corner-light {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    border: 2px solid var(--primary-neon);
+}
+
+.corner-light.top-left {
+    top: 15px;
+    left: 15px;
+    border-right: none;
+    border-bottom: none;
+    animation: cornerPulse 3s ease-in-out infinite;
+}
+
+.corner-light.top-right {
+    top: 15px;
+    right: 15px;
+    border-left: none;
+    border-bottom: none;
+    animation: cornerPulse 3s ease-in-out infinite 0.5s;
+}
+
+.corner-light.bottom-left {
+    bottom: 15px;
+    left: 15px;
+    border-right: none;
+    border-top: none;
+    animation: cornerPulse 3s ease-in-out infinite 1s;
+}
+
+.corner-light.bottom-right {
+    bottom: 15px;
+    right: 15px;
+    border-left: none;
+    border-top: none;
+    animation: cornerPulse 3s ease-in-out infinite 1.5s;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+}
+
+.dashboard-title {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.title-icon {
+    font-size: 2rem;
+    animation: brainPulse 2s ease-in-out infinite;
+}
+
+.title-text h4 {
+    font-family: var(--font-mono);
+    color: var(--primary-neon);
+    font-size: 1.2rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-shadow: 0 0 15px var(--primary-neon);
+    margin: 0;
+    margin-bottom: 0.25rem;
+}
+
+.version {
+    font-family: var(--font-mono);
+    color: var(--text-secondary);
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    opacity: 0.8;
+}
+
+.status-indicators {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.status-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    position: relative;
+}
+
+.status-dot.online {
+    background: var(--primary-neon);
+    box-shadow: 0 0 15px var(--primary-neon);
+    animation: statusPulse 2s ease-in-out infinite;
+}
+
+.status-dot.processing {
+    background: var(--accent-neon);
+    box-shadow: 0 0 15px var(--accent-neon);
+    animation: statusPulse 2s ease-in-out infinite 0.5s;
+}
+
+.status-dot.analyzing {
+    background: var(--warning-neon);
+    box-shadow: 0 0 15px var(--warning-neon);
+    animation: statusPulse 2s ease-in-out infinite 1s;
+}
+
+.scan-line {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        var(--primary-neon) 50%, 
+        transparent 100%);
+    animation: scanLineMove 3s ease-in-out infinite;
+}
+
+/* Neural Data Streams */
+.neural-data-streams {
+    position: relative;
+    padding: 2rem;
+}
+
+.data-flow-lines {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+}
+
+.flow-line {
+    position: absolute;
+    height: 1px;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        var(--primary-neon) 20%, 
+        transparent 40%, 
+        var(--accent-neon) 60%, 
+        transparent 80%, 
+        var(--warning-neon) 100%);
+    opacity: 0.3;
+}
+
+.flow-line.line-1 {
+    top: 20%;
+    left: 0;
+    right: 0;
+    animation: dataFlow 4s ease-in-out infinite;
+}
+
+.flow-line.line-2 {
+    top: 60%;
+    left: 0;
+    right: 0;
+    animation: dataFlow 4s ease-in-out infinite 1s;
+}
+
+.flow-line.line-3 {
+    top: 80%;
+    left: 0;
+    right: 0;
+    animation: dataFlow 4s ease-in-out infinite 2s;
+}
+
+/* Processing Matrix */
+.processing-matrix {
+    position: relative;
+    z-index: 2;
+}
+
+.matrix-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -1100,36 +1685,338 @@ body.zoom-in {
     border-bottom: 1px solid var(--border-glow);
 }
 
-.summary-header h4 {
+.matrix-label {
     font-family: var(--font-mono);
-    color: var(--primary-neon);
-    font-size: 1.1rem;
+    color: var(--accent-neon);
+    font-size: 1rem;
     font-weight: bold;
-    letter-spacing: 2px;
-    text-shadow: 0 0 10px var(--primary-neon);
+    letter-spacing: 1px;
+    text-shadow: 0 0 10px var(--accent-neon);
 }
 
-.scan-indicator {
-    width: 20px;
-    height: 20px;
-    border: 2px solid var(--primary-neon);
+.matrix-scan {
+    width: 30px;
+    height: 30px;
+    border: 2px solid var(--accent-neon);
     border-radius: 50%;
     position: relative;
-    animation: scannerPulse 2s ease-in-out infinite;
+    animation: matrixScan 2s ease-in-out infinite;
 }
 
-.scan-indicator::after {
+.matrix-scan::before {
     content: '';
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 6px;
-    height: 6px;
-    background: var(--primary-neon);
+    width: 8px;
+    height: 8px;
+    background: var(--accent-neon);
     border-radius: 50%;
     transform: translate(-50%, -50%);
     animation: scannerBlink 1s ease-in-out infinite;
 }
+
+.neural-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* Analytics Footer */
+.analytics-footer {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 1.5rem 2rem;
+    border-top: 2px solid var(--border-glow);
+    position: relative;
+}
+
+.neural-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-label {
+    display: block;
+    font-family: var(--font-mono);
+    color: var(--text-secondary);
+    font-size: 0.7rem;
+    letter-spacing: 1px;
+    margin-bottom: 0.25rem;
+}
+
+.stat-value {
+    display: block;
+    font-family: var(--font-mono);
+    color: var(--primary-neon);
+    font-size: 0.9rem;
+    font-weight: bold;
+    text-shadow: 0 0 8px var(--primary-neon);
+}
+
+.data-sync {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.sync-indicator {
+    width: 15px;
+    height: 15px;
+    border: 2px solid var(--secondary-neon);
+    border-radius: 50%;
+    border-top: 2px solid transparent;
+    animation: syncSpin 1.5s linear infinite;
+}
+
+.sync-text {
+    font-family: var(--font-mono);
+    color: var(--secondary-neon);
+    font-size: 0.7rem;
+    letter-spacing: 1px;
+    animation: textPulse 2s ease-in-out infinite;
+}
+
+/* Neural Connection Tendrils */
+.neural-tendrils {
+    position: absolute;
+    top: 0;
+    right: -50px;
+    width: 200px;
+    height: 100%;
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+.tendril-svg {
+    width: 100%;
+    height: 100%;
+}
+
+.tendril-path {
+    stroke-dasharray: 10 5;
+    animation: tendrilFlow 8s ease-in-out infinite;
+}
+
+.tendril-path.path-1 {
+    animation-delay: 0s;
+}
+
+.tendril-path.path-2 {
+    animation-delay: 2s;
+}
+
+.tendril-path.path-3 {
+    animation-delay: 4s;
+}
+
+/* Holographic Data Panel */
+.holographic-panel {
+    background: rgba(0, 0, 0, 0.6);
+    border: 2px solid var(--accent-neon);
+    border-radius: 20px;
+    padding: 2rem;
+    backdrop-filter: blur(15px);
+    box-shadow: 
+        0 0 40px rgba(0, 136, 255, 0.3),
+        inset 0 0 40px rgba(0, 136, 255, 0.05);
+    position: relative;
+    max-width: 350px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.holo-frame {
+    position: relative;
+    height: 300px;
+}
+
+.holo-grid {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        linear-gradient(rgba(0, 136, 255, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 136, 255, 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+    animation: gridShift 10s linear infinite;
+    opacity: 0.3;
+}
+
+.holo-content {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Expertise Radar */
+.expertise-radar {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.radar-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 8px;
+    height: 8px;
+    background: var(--accent-neon);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 15px var(--accent-neon);
+    animation: centerPulse 2s ease-in-out infinite;
+    z-index: 5;
+}
+
+.radar-rings {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.radar-ring {
+    position: absolute;
+    border: 1px solid var(--accent-neon);
+    border-radius: 50%;
+    opacity: 0.4;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.radar-ring.ring-1 {
+    width: 60px;
+    height: 60px;
+    animation: radarPulse 4s ease-in-out infinite;
+}
+
+.radar-ring.ring-2 {
+    width: 120px;
+    height: 120px;
+    animation: radarPulse 4s ease-in-out infinite 1s;
+}
+
+.radar-ring.ring-3 {
+    width: 180px;
+    height: 180px;
+    animation: radarPulse 4s ease-in-out infinite 2s;
+}
+
+.radar-sweep {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 90px;
+    height: 2px;
+    background: linear-gradient(90deg, 
+        var(--accent-neon) 0%, 
+        transparent 100%);
+    transform-origin: 0 50%;
+    transform: translate(0, -50%);
+    animation: radarSweep 6s linear infinite;
+    z-index: 4;
+}
+
+.expertise-markers {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.marker {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    transform: 
+        translate(-50%, -50%)
+        rotate(var(--angle))
+        translateX(calc(var(--distance) * 90px))
+        rotate(calc(-1 * var(--angle)));
+    animation: markerPulse 3s ease-in-out infinite;
+}
+
+.marker.expert {
+    background: var(--primary-neon);
+    box-shadow: 0 0 8px var(--primary-neon);
+}
+
+.marker.advanced {
+    background: var(--accent-neon);
+    box-shadow: 0 0 8px var(--accent-neon);
+}
+
+.marker.intermediate {
+    background: var(--warning-neon);
+    box-shadow: 0 0 8px var(--warning-neon);
+}
+
+.marker.beginner {
+    background: var(--secondary-neon);
+    box-shadow: 0 0 8px var(--secondary-neon);
+}
+
+.radar-labels {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.radar-title {
+    font-family: var(--font-mono);
+    color: var(--accent-neon);
+    font-size: 1rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-shadow: 0 0 10px var(--accent-neon);
+    margin-bottom: 1rem;
+}
+
+.radar-legend {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    color: var(--text-secondary);
+}
+
+.legend-item.expert { color: var(--primary-neon); }
+.legend-item.advanced { color: var(--accent-neon); }
+.legend-item.intermediate { color: var(--warning-neon); }
+.legend-item.beginner { color: var(--secondary-neon); }
 
 .summary-list {
     display: flex;
@@ -1686,6 +2573,11 @@ body.zoom-in {
 /* Skill Domains */
 .skill-domains {
     margin-top: 4rem;
+    position: relative;
+    overflow: hidden;
+    border-radius: 20px;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 3rem 2rem;
 }
 
 .domains-title {
@@ -1695,6 +2587,8 @@ body.zoom-in {
     text-align: center;
     margin-bottom: 3rem;
     position: relative;
+    z-index: 3;
+    text-shadow: 0 0 20px var(--primary-neon);
 }
 
 .domains-title::after {
@@ -1706,16 +2600,19 @@ body.zoom-in {
     width: 100px;
     height: 2px;
     background: linear-gradient(90deg, var(--primary-neon), var(--secondary-neon));
+    box-shadow: 0 0 10px var(--primary-neon);
 }
 
 .domains-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 2rem;
+    position: relative;
+    z-index: 3;
 }
 
 .domain-card {
-    background: var(--bg-card);
+    background: rgba(17, 17, 17, 0.9);
     border: 1px solid var(--border-glow);
     border-radius: 12px;
     padding: 2rem;
@@ -1723,6 +2620,8 @@ body.zoom-in {
     transition: all var(--transition-normal);
     cursor: pointer;
     overflow: hidden;
+    backdrop-filter: blur(10px);
+    z-index: 3;
 }
 
 .domain-card:hover {
@@ -2291,50 +3190,167 @@ body.zoom-in {
     
     /* Languages Layout Responsive */
     .languages-layout {
-        grid-template-columns: 1fr;
-        gap: 3rem;
+        flex-direction: column;
+        gap: 2rem;
         padding: 0 1rem;
     }
     
-    .dna-helix {
-        width: 350px;
+    /* Neural Dashboard Responsive */
+    .neural-analysis-dashboard {
+        max-width: 100%;
+    }
+    
+    .dashboard-header {
+        padding: 0;
+    }
+    
+    .hud-frame {
+        padding: 1.5rem;
+    }
+    
+    .title-text h4 {
+        font-size: 1rem;
+    }
+    
+    .version {
+        font-size: 0.6rem;
+    }
+    
+    .neural-data-streams {
+        padding: 1.5rem;
+    }
+    
+    .matrix-label {
+        font-size: 0.9rem;
+    }
+    
+    .analytics-footer {
+        padding: 1rem 1.5rem;
+    }
+    
+    .neural-stats {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.5rem;
+    }
+    
+    .stat-item:last-child {
+        grid-column: 1 / -1;
+        text-align: center;
+    }
+    
+    /* Holographic Panel Responsive */
+    .holographic-panel {
+        max-width: 100%;
+        padding: 1.5rem;
+    }
+    
+    .holo-frame {
+        height: 250px;
+    }
+    
+    .expertise-radar {
+        width: 180px;
+        height: 180px;
+    }
+    
+    .radar-title {
+        font-size: 0.9rem;
+    }
+    
+    .radar-legend {
+        font-size: 0.5rem;
+    }
+    
+    /* Neural Tendrils Responsive */
+    .neural-tendrils {
+        display: none;
+    }
+    
+    /* Neural Network Background Responsive */
+    .neural-core-bg {
+        width: 900px;
+        height: 900px;
+    }
+    
+    .expert-pathway-bg { width: 240px; height: 240px; }
+    .advanced-pathway-bg { width: 360px; height: 360px; }
+    .intermediate-pathway-bg { width: 480px; height: 480px; }
+    .beginner-pathway-bg { width: 600px; height: 600px; }
+    
+    .expert-pathway-bg .neural-node-bg { --pathway-radius-bg: 120px; }
+    .advanced-pathway-bg .neural-node-bg { --pathway-radius-bg: 180px; }
+    .intermediate-pathway-bg .neural-node-bg { --pathway-radius-bg: 240px; }
+    .beginner-pathway-bg .neural-node-bg { --pathway-radius-bg: 300px; }
+    
+    .neural-node-bg {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .node-symbol-bg {
+        font-size: 0.7rem;
+    }
+    
+    .brain-icon-bg {
+        font-size: 2rem;
+    }
+    
+    .core-title-bg {
+        font-size: 0.9rem;
+    }
+    
+    .core-subtitle-bg {
+        font-size: 0.7rem;
+    }
+    
+    .neural-core {
+        width: 400px;
         height: 400px;
     }
     
-    .ring-1 { width: 100px; height: 100px; }
-    .ring-2 { width: 130px; height: 130px; }
-    .ring-3 { width: 160px; height: 160px; }
-    .ring-4 { width: 190px; height: 190px; }
-    .ring-5 { width: 220px; height: 220px; }
-    .ring-6 { width: 250px; height: 250px; }
-    .ring-7 { width: 280px; height: 280px; }
+    .expert-pathway { width: 160px; height: 160px; }
+    .advanced-pathway { width: 260px; height: 260px; }
+    .intermediate-pathway { width: 360px; height: 360px; }
+    .beginner-pathway { width: 460px; height: 460px; }
     
-    .language-molecule {
+    .expert-pathway .neural-node { --pathway-radius: 80px; }
+    .advanced-pathway .neural-node { --pathway-radius: 130px; }
+    .intermediate-pathway .neural-node { --pathway-radius: 180px; }
+    .beginner-pathway .neural-node { --pathway-radius: 230px; }
+    
+    .neural-node {
         width: 120px;
         padding: 0.5rem 0.75rem;
         gap: 0.5rem;
     }
     
-    .molecule-core {
+    .node-core {
         width: 35px;
         height: 35px;
     }
     
-    .electron-orbit {
-        width: 50px;
-        height: 50px;
-    }
-    
-    .molecule-symbol {
+    .node-symbol {
         font-size: 0.6rem;
     }
     
-    .molecule-name {
+    .node-name {
         font-size: 0.7rem;
     }
     
-    .molecule-level {
+    .node-level {
         font-size: 0.55rem;
+    }
+    
+    .brain-icon {
+        font-size: 1.5rem;
+    }
+    
+    .core-title {
+        font-size: 0.7rem;
+    }
+    
+    .core-subtitle {
+        font-size: 0.5rem;
     }
     
     .skills-summary {
@@ -2547,6 +3563,17 @@ body.zoom-in {
     .domain-card {
         padding: 1.5rem;
     }
+    
+    /* Skill Domains with Neural Background */
+    .skill-domains {
+        padding: 2rem 1rem;
+        margin-top: 3rem;
+    }
+    
+    .domains-title {
+        font-size: 1.8rem;
+        margin-bottom: 2rem;
+    }
 }
 
 @media (max-width: 480px) {
@@ -2603,50 +3630,238 @@ body.zoom-in {
         font-size: 2.5rem;
     }
     
-    /* Mobile DNA & Command Center */
-    .dna-helix {
-        width: 250px;
+    /* Mobile Skill Domains with Neural Background */
+    .skill-domains {
+        padding: 1.5rem 0.5rem;
+        margin-top: 2rem;
+    }
+    
+    .domains-title {
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    /* Mobile Neural Network Background */
+    .neural-core-bg {
+        width: 600px;
+        height: 600px;
+    }
+    
+    .expert-pathway-bg { width: 160px; height: 160px; }
+    .advanced-pathway-bg { width: 240px; height: 240px; }
+    .intermediate-pathway-bg { width: 320px; height: 320px; }
+    .beginner-pathway-bg { width: 400px; height: 400px; }
+    
+    .expert-pathway-bg .neural-node-bg { --pathway-radius-bg: 80px; }
+    .advanced-pathway-bg .neural-node-bg { --pathway-radius-bg: 120px; }
+    .intermediate-pathway-bg .neural-node-bg { --pathway-radius-bg: 160px; }
+    .beginner-pathway-bg .neural-node-bg { --pathway-radius-bg: 200px; }
+    
+    .neural-node-bg {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .node-symbol-bg {
+        font-size: 0.6rem;
+    }
+    
+    .brain-icon-bg {
+        font-size: 1.8rem;
+    }
+    
+    .core-title-bg {
+        font-size: 0.8rem;
+    }
+    
+    .core-subtitle-bg {
+        font-size: 0.6rem;
+    }
+    
+    .core-rings-bg {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .core-ring-bg.inner { width: 60px; height: 60px; }
+    .core-ring-bg.middle { width: 80px; height: 80px; }
+    .core-ring-bg.outer { width: 100px; height: 100px; }
+    
+    /* Mobile Neural Network */
+    .neural-core {
+        width: 300px;
         height: 300px;
     }
     
-    .ring-1 { width: 80px; height: 80px; }
-    .ring-2 { width: 100px; height: 100px; }
-    .ring-3 { width: 120px; height: 120px; }
-    .ring-4 { width: 140px; height: 140px; }
-    .ring-5 { width: 160px; height: 160px; }
-    .ring-6 { width: 180px; height: 180px; }
-    .ring-7 { width: 200px; height: 200px; }
+    .expert-pathway { width: 100px; height: 100px; }
+    .advanced-pathway { width: 140px; height: 140px; }
+    .intermediate-pathway { width: 180px; height: 180px; }
+    .beginner-pathway { width: 220px; height: 220px; }
     
-    .language-molecule {
-        width: 100px;
+    .expert-pathway .neural-node { --pathway-radius: 50px; }
+    .advanced-pathway .neural-node { --pathway-radius: 70px; }
+    .intermediate-pathway .neural-node { --pathway-radius: 90px; }
+    .beginner-pathway .neural-node { --pathway-radius: 110px; }
+    
+    .neural-node {
+        width: 90px;
         padding: 0.4rem 0.6rem;
         gap: 0.4rem;
         font-size: 0.7rem;
         flex-direction: column;
         text-align: center;
-        top: -15px;
-        left: -35px;
     }
     
-    .molecule-core {
+    .node-core {
         width: 30px;
         height: 30px;
+        margin-bottom: 0.25rem;
     }
     
-    .electron-orbit {
-        width: 45px;
-        height: 45px;
+    .neural-activity {
+        justify-content: center;
+        gap: 2px;
     }
     
-    .molecule-symbol {
+    .node-symbol {
         font-size: 0.6rem;
     }
     
-    .molecule-name {
+    .node-name {
         font-size: 0.6rem;
     }
     
-    .molecule-level {
+    .node-level {
+        font-size: 0.5rem;
+    }
+    
+    .brain-icon {
+        font-size: 1.2rem;
+    }
+    
+    .core-title {
+        font-size: 0.6rem;
+    }
+    
+    .core-subtitle {
+        font-size: 0.4rem;
+    }
+    
+    .processing-core {
+        transform: translate(-50%, -50%) scale(0.8);
+    }
+    
+    /* Mobile Neural Dashboard */
+    .dashboard-title {
+        flex-direction: column;
+        gap: 0.5rem;
+        text-align: center;
+    }
+    
+    .title-icon {
+        font-size: 1.5rem;
+    }
+    
+    .title-text h4 {
+        font-size: 0.9rem;
+    }
+    
+    .version {
+        font-size: 0.5rem;
+    }
+    
+    .header-content {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .status-indicators {
+        gap: 0.75rem;
+    }
+    
+    .status-dot {
+        width: 10px;
+        height: 10px;
+    }
+    
+    .neural-stats {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+    }
+    
+    .stat-item {
+        padding: 0.5rem;
+        border: 1px solid var(--border-glow);
+        border-radius: 8px;
+        background: rgba(0, 0, 0, 0.2);
+    }
+    
+    .stat-item:last-child {
+        grid-column: auto;
+    }
+    
+    .stat-label {
+        font-size: 0.6rem;
+    }
+    
+    .stat-value {
+        font-size: 0.8rem;
+    }
+    
+    .sync-text {
+        font-size: 0.6rem;
+    }
+    
+    .sync-indicator {
+        width: 12px;
+        height: 12px;
+    }
+    
+    /* Mobile Holographic Panel */
+    .holographic-panel {
+        padding: 1rem;
+    }
+    
+    .holo-frame {
+        height: 200px;
+    }
+    
+    .expertise-radar {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .radar-ring.ring-1 { width: 50px; height: 50px; }
+    .radar-ring.ring-2 { width: 100px; height: 100px; }
+    .radar-ring.ring-3 { width: 140px; height: 140px; }
+    
+    .radar-sweep {
+        width: 70px;
+    }
+    
+    .marker {
+        width: 4px;
+        height: 4px;
+        transform: 
+            translate(-50%, -50%)
+            rotate(var(--angle))
+            translateX(calc(var(--distance) * 70px))
+            rotate(calc(-1 * var(--angle)));
+    }
+    
+    .radar-center {
+        width: 6px;
+        height: 6px;
+    }
+    
+    .radar-title {
+        font-size: 0.8rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .radar-legend {
+        grid-template-columns: 1fr;
+        gap: 0.25rem;
         font-size: 0.5rem;
     }
     
@@ -2868,12 +4083,287 @@ body.zoom-in::before {
     }
 }
 
-@keyframes slowOrbit {
+/* Neural Network Animations */
+@keyframes coreRingPulse {
+    0%, 100% {
+        opacity: 0.8;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.1);
+    }
+}
+
+@keyframes brainPulse {
+    0%, 100% {
+        transform: scale(1);
+        filter: drop-shadow(0 0 5px var(--primary-neon));
+    }
+    50% {
+        transform: scale(1.1);
+        filter: drop-shadow(0 0 15px var(--primary-neon));
+    }
+}
+
+/* Background Neural Network Animations */
+@keyframes coreRingPulseBg {
+    0%, 100% {
+        opacity: 0.6;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.1);
+    }
+}
+
+@keyframes brainPulseBg {
+    0%, 100% {
+        transform: scale(1);
+        filter: drop-shadow(0 0 8px var(--primary-neon));
+    }
+    50% {
+        transform: scale(1.1);
+        filter: drop-shadow(0 0 20px var(--primary-neon));
+    }
+}
+
+@keyframes orbitalRotation {
     from {
         transform: translate(-50%, -50%) rotate(0deg);
     }
     to {
         transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+@keyframes synapseIdleBg {
+    0%, 100% {
+        opacity: 0.4;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.7;
+        transform: scale(1.2);
+    }
+}
+
+@keyframes synapseActiveBg {
+    0%, 100% {
+        opacity: 0.8;
+        transform: scale(1);
+        box-shadow: 0 0 6px currentColor;
+    }
+    50% {
+        opacity: 0.6;
+        transform: scale(1.5);
+        box-shadow: 0 0 10px currentColor;
+    }
+}
+
+@keyframes activationPulseBg {
+    0%, 100% {
+        opacity: 0;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.8;
+        transform: scale(1.5);
+    }
+}
+
+/* Dashboard Animations */
+@keyframes cornerPulse {
+    0%, 100% {
+        opacity: 0.6;
+        border-color: var(--primary-neon);
+    }
+    50% {
+        opacity: 1;
+        border-color: var(--accent-neon);
+        box-shadow: 0 0 10px var(--primary-neon);
+    }
+}
+
+@keyframes statusPulse {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.7;
+        transform: scale(1.2);
+    }
+}
+
+@keyframes scanLineMove {
+    0%, 100% {
+        transform: translateX(-100%);
+    }
+    50% {
+        transform: translateX(100%);
+    }
+}
+
+@keyframes dataFlow {
+    0%, 100% {
+        opacity: 0.3;
+        transform: translateX(-50px);
+    }
+    50% {
+        opacity: 0.8;
+        transform: translateX(50px);
+    }
+}
+
+@keyframes matrixScan {
+    0%, 100% {
+        opacity: 0.8;
+        transform: rotate(0deg) scale(1);
+        border-color: var(--accent-neon);
+    }
+    50% {
+        opacity: 1;
+        transform: rotate(180deg) scale(1.1);
+        border-color: var(--primary-neon);
+    }
+}
+
+@keyframes syncSpin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes textPulse {
+    0%, 100% {
+        opacity: 0.8;
+    }
+    50% {
+        opacity: 1;
+        text-shadow: 0 0 10px currentColor;
+    }
+}
+
+@keyframes tendrilFlow {
+    0%, 100% {
+        stroke-dashoffset: 0;
+        opacity: 0.3;
+    }
+    50% {
+        stroke-dashoffset: 30;
+        opacity: 0.8;
+    }
+}
+
+@keyframes gridShift {
+    from {
+        background-position: 0 0;
+    }
+    to {
+        background-position: 20px 20px;
+    }
+}
+
+@keyframes centerPulse {
+    0%, 100% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    50% {
+        opacity: 0.7;
+        transform: translate(-50%, -50%) scale(1.3);
+    }
+}
+
+@keyframes radarPulse {
+    0%, 100% {
+        opacity: 0.4;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    50% {
+        opacity: 0.8;
+        transform: translate(-50%, -50%) scale(1.05);
+    }
+}
+
+@keyframes radarSweep {
+    from {
+        transform: translate(0, -50%) rotate(0deg);
+    }
+    to {
+        transform: translate(0, -50%) rotate(360deg);
+    }
+}
+
+@keyframes markerPulse {
+    0%, 100% {
+        opacity: 0.8;
+        transform: 
+            translate(-50%, -50%)
+            rotate(var(--angle))
+            translateX(calc(var(--distance) * 90px))
+            rotate(calc(-1 * var(--angle)))
+            scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: 
+            translate(-50%, -50%)
+            rotate(var(--angle))
+            translateX(calc(var(--distance) * 90px))
+            rotate(calc(-1 * var(--angle)))
+            scale(1.3);
+    }
+}
+
+@keyframes neuralPulse {
+    0%, 100% {
+        opacity: 0.7;
+        transform: translate(-50%, -50%) rotate(0deg) scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: translate(-50%, -50%) rotate(0deg) scale(1.02);
+    }
+}
+
+@keyframes synapseIdle {
+    0%, 100% {
+        opacity: 0.3;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.6;
+        transform: scale(1.2);
+    }
+}
+
+@keyframes synapseActive {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+        box-shadow: 0 0 4px currentColor;
+    }
+    50% {
+        opacity: 0.7;
+        transform: scale(1.5);
+        box-shadow: 0 0 8px currentColor;
+    }
+}
+
+@keyframes activationPulse {
+    0%, 100% {
+        opacity: 0;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.5);
     }
 }
 
